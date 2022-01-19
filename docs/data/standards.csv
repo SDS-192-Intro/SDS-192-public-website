@@ -1,0 +1,21 @@
+standard_id,standard,type
+1,Error Resolution and Problem-Solving,coding
+2,GitHub,workflow
+3,Authoring Markdown documents,workflow
+4,Iterating Code,coding
+5,Data Fundamentals,visualization
+6,Subsetting data,wrangling
+7,Aggregating data,wrangling
+8,Pivoting datasets,wrangling
+9,Joining datasets,wrangling
+10,Univariate plotting,visualization
+11,Multi-variate plotting,visualization
+12,Point mapping,visualization
+13,Polygon mapping,visualization
+14,Visualization context,visualization
+15,Visualization aesthetics,visualization
+16,Importing data,coding
+17,Acquiring API data,coding
+18,Tracing data provenance,workflow
+19,Code styling,workflow
+20,Data cleaning,coding

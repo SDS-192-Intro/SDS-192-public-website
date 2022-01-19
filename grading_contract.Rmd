@@ -1,0 +1,151 @@
+---
+title: "Assessment"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r imports, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(bsplus)
+library(htmltools)
+standards <- read.csv("data/standards.csv")
+source("R/buttons.R", local = knitr::knit_global())
+```
+
+This course will be graded using a standards-based assessment system. In a more traditional grading system, your scores on a series of assignments are averaged over the course of the semester. In this course, rather than assessing and averaging your achievement on particular assignments, I will instead be assessing the development of your fluency in a set of pre-defined standards. You will have multiple opportunities over the course of the semester to showcase the depth of your understanding regarding these standards. A standards-based grading system carries the following benefits: 
+
+* Learning targets for the course are clearly defined from the outset, and every graded assignment that you receive will be directly tied to at least one standard. This should make it abundantly clear what skills and competencies I'm assessing on every single assignment. There is no "busy work" with a standards-based system.
+* No one assignment will make-or-break your grade. You have multiple opportunities to demonstrate fluency in a standard. This rewards students that take the time to practice and learn from their mistakes. It prioritizes student growth throughout the course of the semester and allows for us all to have off-days. 
+* Assessments in a standards-based system are much clearer than in a point-based grading system. Saying that I've become proficient in data wrangling, joining, and visualizing means more than saying that I earned a 92.5 in my Introduction to Data Science course. Further, when approaching me about how to improve your grade in the course, we can focus our conversation more on how to deepen certain skills and competencies rather than how to hit certain numeric benchmarks. 
+* A standards-based grading system makes it easier to monitor your progress towards a certain grade.
+
+I'm excited to pilot this system this semester as I believe it aligns with my overarching goals for the course. In this course, I find it far more important that you come away with an understanding of the concepts behind core data science strategies (along with an ability to find and interpret reference materials) than it is to demonstrate memorization of `R` syntax. Developing this understanding will empower you to learn and apply new data science languages on your own.
+
+## What are the standards I will be assessed on in this course?
+
+<div class="panel panel-success"><div class="panel-heading">Data Visualization</div><div class="panel-body">This dimension refers to the development of your ability to produce multiple types of compelling and well-designed visualizations from data. 
+
+```{r, results='asis'}
+viz_standards <- standards %>% 
+    filter(type == "visualization") %>%
+    select(standard_id, standard, type) %>%
+    arrange(standard_id)
+
+print_standards_buttons(viz_standards)
+```
+    </div>
+</div>
+
+<div class="panel panel-primary"><div class="panel-heading">Data Wrangling</div><div class="panel-body">This dimension refers to the development of your ability to transform datasets into new formats in order to prepare them for further analysis or visualization. 
+
+```{r, results='asis'}
+wrangling_standards <- standards %>% 
+    filter(type == "wrangling") %>%
+    select(standard_id, standard, type) %>%
+    arrange(standard_id)
+
+print_standards_buttons(wrangling_standards)
+```
+    </div>
+</div>
+
+<div class="panel panel-info"><div class="panel-heading">Coding for Data Science</div><div class="panel-body">This dimension refers to the development of your ability to write code in the `R` programming language and apply it towards the analysis of data. 
+
+```{r, results='asis'}
+coding_standards <- standards %>% 
+    filter(type == "coding") %>%
+    select(standard_id, standard, type) %>%
+    arrange(standard_id)
+
+print_standards_buttons(coding_standards)
+```
+    </div>
+</div>
+
+<div class="panel panel-warning"><div class="panel-heading">Data Science Workflow</div><div class="panel-body">This dimension refers to the development of your ability to apply data science best practices in your work. 
+
+```{r, results='asis'}
+workflow_standards <- standards %>% 
+    filter(type == "workflow") %>%
+    select(standard_id, standard, type) %>%
+    arrange(standard_id)
+
+print_standards_buttons(workflow_standards)
+```
+    </div>
+</div>
+
+<div class="panel panel-default"><div class="panel-heading">Data Ethics</div><div class="panel-body">This dimension refers to your ability to recognize and navigate ethical dilemmas that emerge in data science work. There is not a formal standard for data ethics because issues related to data ethics will be discussed in every unit of the course, and you will be assessed on data ethics issues related to other standards in quizzes and projects. 
+    </div>
+</div>
+
+## How will this system work?
+
+To earn maximum credit for each standard, you will be expected to demonstrate fluency in that standard on both an *individual* and *group* assignment. Following each assignment, I will adjust your score on the standards being assessed according to the following criteria:
+
+* 0: Progress towards fluency not yet demonstrated
+* 1: Progressing towards fluency
+* 2: Demonstrated fluency on either individual or group assignment
+* 3: Demonstrated fluency on both individual and group assignment
+
+You will have multiple opportunities throughout the semester to improve your score on a particular standard. 
+
+In addition, up to 4 points will be awarded based on the degree of your participation in the course. You will have an opportunity to self-assess your participation mid-semester and at the end of the course according to the following rubric:
+
+| Score | Description |
+|:-:|:------------|
+| 4 | Student is almost always present in class and is almost always an active participant in course discussions. Student contributes weekly to Slack discussions and posts weekly comments on course readings and lectures in Perusall. |
+| 3 | Student is often present in class and is often an active participant in course discussions. Student contributes most weeks to Slack discussions and posts comments on course readings and lectures in Perusall most weeks. |
+| 2 | Student is often present in class and is only sometimes an active participant in course discussions. Student contributes every few weeks to Slack discussions and posts comments on course readings and lectures in Perusall every few weeks. |
+| 1 | Student is often present in class, but is rarely an active participant in course discussions. Student contributes rarely contributes to Slack discussions and rarely posts comments on course readings and lectures in Perusall. |
+| 0 | Student misses more than 75% of classes and almost never contributes to Slack discussions or posts comments on course readings and lectures in Perusall. |
+
+Note that while I will most often assign the grade that you give yourself for participation, I reserve the right to revise the grade if it considerably misaligns with my observations of your engagement. In these cases, I will always open a discussion with you before revising the grade. 
+
+At the end of the semester, I will sum your scores on all standards, and final grades will be awarded as follows:
+
+| Grade | Description |
+|:---:|:--------:|
+| A | 60-64 points |
+| A- | 58-59 points |
+| B+ | 56-57 points |
+| B | 54-55 points |
+| B- | 52-53 points |
+| C+ | 50-51 points |
+| C | 48-49 points |
+| C- | 46-47 points |
+| D+ | 44-45 points |
+| D | 42-43 points |
+| D- | 40-41 points |
+| E | 39 or less points |
+
+## How will I be assessed on the course standards?
+
+### Informal Assessments
+
+#### Readings
+
+Each week, you will be assigned a section of the course texts to read prior to class. I expect that you will come having read this section in order to prepare for in-class exercise and labs. You do not need to complete the exercises in the course texts but may choose to do so if you wish. All course readings will be available in Perusall, and you can post questions and comments in the reading for myself or your classmates to answer. 
+
+#### Video Lectures
+
+In some weeks, I will post video lectures to Perusall as supplements to the material covered in the reading. I expect that you will view these lectures prior to class in order to prepare for in-class exercises and labs. You may leave comments in Perusall at certain timestamps as questions come up. 
+
+#### Problem Sets
+
+Each week you will be given a series of problem sets for practicing the skills we've learned in class. Each problem set will be designed to give you an opportunity to assess your own understanding of 1-2 course standards. These problem sets are not formal assessments of your work and will not be considered in determining your grade. Completing any given problem set is *optional* but highly recommended for your success in the course. I also encourage you to work in groups to complete the problem sets. Answers to problem sets will be posted the following week.
+
+### Formal Assessments
+
+#### Quizzes
+
+There will be 7 take-home quizzes administered over the course of semester, and each quiz will be designed to assess your fluency in a set of course standards. Each quiz will be administered in Moodle and will include both computational prompts and written prompts. Quizzes will be taken at home and are open book/open Internet. Once a quiz is posted, you may start it at any time before its due date. While my expectation is that each quiz should take no more than 30 minutes to complete, once you start a quiz, you will have 3 hours to complete it. 
+
+You can earn up to two points towards each standard being assessed based on your quiz responses. There will be no re-takes of quizzes, but by the second quiz, each subsequent quiz will include optional questions for reassessing the standards covered by the previous quiz, and your score for each standard will be based on your most recent assessment. In this way, you will have an opportunity to improve your scores on standards.
+
+#### Mini-Projects
+
+There will be 4 mini-projects, to be completed in groups of 3-4, assigned over the course of the semester. In each you will have an opportunity to demonstrate fluency in standards we have covered up to that point in the semester. I will provide prompts for each mini-project, but you will have a lot of flexibility to demonstrate your own creativity and explore your own interests in designing a project around the prompt. You can earn up to two points towards each standard based on your mini-project submission.
+

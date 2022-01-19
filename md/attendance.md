@@ -1,0 +1,1 @@
+I will not be taking attendance in this course, and you do not need to inform me when you will be absent. If you are sick, please stay home. That said, I expect students to be present when possible. If you miss a class, you should contact a peer to discuss what was missed. I won't have the capacity this semester to re-deliver missed material in office hours. 

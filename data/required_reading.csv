@@ -1,0 +1,41 @@
+﻿topic_id,topic_abbr,reading,chapter
+1,data_science,,
+2,datasets,,
+3,r_intro,,
+4,data_fundamentals,irizarryIntroductionDataScience2022,2. R Basics
+5,summarizing,,
+6,learning_code,,
+7,grammar_graphics,baumerModernDataScience2021,2. Data Visualization
+8,viz_conventions,irizarryIntroductionDataScience2022,11. Data Visualization Principles
+9,designing_graphics,,
+10,frequency_Plots,ismayModernDiveStatistical2021,2. Data Visualization
+11,boxplots,,
+12,multivariate,,
+13,github,bryanExcuseMeYou2018,
+14,markdown,baumerModernDataScience2021,D Reproducible analysis and workflow
+15,recap1,,
+16,subsetting,ismayModernDiveStatistical2021,3. Data Wrangling (3.1-3.3)
+17,aggregating,ismayModernDiveStatistical2021,3. Data Wrangling (3.4-3.6)
+18,facet_filter,,
+19,data_acquisition,irizarryIntroductionDataScience2022,5. Importing Data
+19,data_acquisition,irizarryIntroductionDataScience2022,26. Parsing dates and times
+20,pivoting,baumerModernDataScience2021,6. Tidy Data
+21,tidying,,
+22,joining,baumerModernDataScience2021,5. Data wrangling on multiple tables
+23,apis,,
+24,joining_apis,,
+25,functions,baumerModernDataScience2021,7. Iteration
+26,practicing_functions,,
+27,recap2,,
+28,projections,baumerModernDataScience2021,17. Working with geospatial data  (17.1-17.3)
+29,leaflet,,
+30,interpretation,,
+31,polygons,baumerModernDataScience2021,17. Working with geospatial data  (17.4-17.8)
+32,layering,,
+33,chloropleth,,
+34,tbd1,,
+35,tbd2,,
+36,recap3,,
+37,final1,,
+38,final2,,
+39,final3,,

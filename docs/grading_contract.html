@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Assessment</title>
+
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+
+
+
+<link rel="stylesheet" href="css/custom.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">SDS 192: Intro to Data Science</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Syllabus</a>
+</li>
+<li>
+  <a href="grading_contract.html">Standards Grading</a>
+</li>
+<li>
+  <a href="schedule.html">Schedule</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/SDS-192-Intro/">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Assessment</h1>
+
+</div>
+
+
+<p>This course will be graded using a standards-based assessment system. In a more traditional grading system, your scores on a series of assignments are averaged over the course of the semester. In this course, rather than assessing and averaging your achievement on particular assignments, I will instead be assessing the development of your fluency in a set of pre-defined standards. You will have multiple opportunities over the course of the semester to showcase the depth of your understanding regarding these standards. A standards-based grading system carries the following benefits:</p>
+<ul>
+<li>Learning targets for the course are clearly defined from the outset, and every graded assignment that you receive will be directly tied to at least one standard. This should make it abundantly clear what skills and competencies I’m assessing on every single assignment. There is no “busy work” with a standards-based system.</li>
+<li>No one assignment will make-or-break your grade. You have multiple opportunities to demonstrate fluency in a standard. This rewards students that take the time to practice and learn from their mistakes. It prioritizes student growth throughout the course of the semester and allows for us all to have off-days.</li>
+<li>Assessments in a standards-based system are much clearer than in a point-based grading system. Saying that I’ve become proficient in data wrangling, joining, and visualizing means more than saying that I earned a 92.5 in my Introduction to Data Science course. Further, when approaching me about how to improve your grade in the course, we can focus our conversation more on how to deepen certain skills and competencies rather than how to hit certain numeric benchmarks.</li>
+<li>A standards-based grading system makes it easier to monitor your progress towards a certain grade.</li>
+</ul>
+<p>I’m excited to pilot this system this semester as I believe it aligns with my overarching goals for the course. In this course, I find it far more important that you come away with an understanding of the concepts behind core data science strategies (along with an ability to find and interpret reference materials) than it is to demonstrate memorization of <code>R</code> syntax. Developing this understanding will empower you to learn and apply new data science languages on your own.</p>
+<div id="what-are-the-standards-i-will-be-assessed-on-in-this-course" class="section level2">
+<h2>What are the standards I will be assessed on in this course?</h2>
+<div class="panel panel-success">
+<div class="panel-heading">
+Data Visualization
+</div>
+<div class="panel-body">
+<p>This dimension refers to the development of your ability to produce multiple types of compelling and well-designed visualizations from data.</p>
+<button class="btn btn-success btn-sm">DATA FUNDAMENTALS</button> <button class="btn btn-success btn-sm">UNIVARIATE PLOTTING</button> <button class="btn btn-success btn-sm">MULTI-VARIATE PLOTTING</button> <button class="btn btn-success btn-sm">POINT MAPPING</button> <button class="btn btn-success btn-sm">POLYGON MAPPING</button> <button class="btn btn-success btn-sm">VISUALIZATION CONTEXT</button> <button class="btn btn-success btn-sm">VISUALIZATION AESTHETICS</button><br />
+
+</div>
+</div>
+<div class="panel panel-primary">
+<div class="panel-heading">
+Data Wrangling
+</div>
+<div class="panel-body">
+<p>This dimension refers to the development of your ability to transform datasets into new formats in order to prepare them for further analysis or visualization.</p>
+<button class="btn btn-primary btn-sm">SUBSETTING DATA</button> <button class="btn btn-primary btn-sm">AGGREGATING DATA</button> <button class="btn btn-primary btn-sm">PIVOTING DATASETS</button> <button class="btn btn-primary btn-sm">JOINING DATASETS</button><br />
+
+</div>
+</div>
+<div class="panel panel-info">
+<div class="panel-heading">
+Coding for Data Science
+</div>
+<div class="panel-body">
+<p>This dimension refers to the development of your ability to write code in the <code>R</code> programming language and apply it towards the analysis of data.</p>
+<button class="btn btn-info btn-sm">ERROR RESOLUTION AND PROBLEM-SOLVING</button> <button class="btn btn-info btn-sm">ITERATING CODE</button> <button class="btn btn-info btn-sm">IMPORTING DATA</button> <button class="btn btn-info btn-sm">ACQUIRING API DATA</button> <button class="btn btn-info btn-sm">DATA CLEANING</button><br />
+
+</div>
+</div>
+<div class="panel panel-warning">
+<div class="panel-heading">
+Data Science Workflow
+</div>
+<div class="panel-body">
+<p>This dimension refers to the development of your ability to apply data science best practices in your work.</p>
+<button class="btn btn-warning btn-sm">GITHUB</button> <button class="btn btn-warning btn-sm">AUTHORING MARKDOWN DOCUMENTS</button> <button class="btn btn-warning btn-sm">TRACING DATA PROVENANCE</button> <button class="btn btn-warning btn-sm">CODE STYLING</button><br />
+
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+Data Ethics
+</div>
+<div class="panel-body">
+This dimension refers to your ability to recognize and navigate ethical dilemmas that emerge in data science work. There is not a formal standard for data ethics because issues related to data ethics will be discussed in every unit of the course, and you will be assessed on data ethics issues related to other standards in quizzes and projects.
+</div>
+</div>
+</div>
+<div id="how-will-this-system-work" class="section level2">
+<h2>How will this system work?</h2>
+<p>To earn maximum credit for each standard, you will be expected to demonstrate fluency in that standard on both an <em>individual</em> and <em>group</em> assignment. Following each assignment, I will adjust your score on the standards being assessed according to the following criteria:</p>
+<ul>
+<li>0: Progress towards fluency not yet demonstrated</li>
+<li>1: Progressing towards fluency</li>
+<li>2: Demonstrated fluency on either individual or group assignment</li>
+<li>3: Demonstrated fluency on both individual and group assignment</li>
+</ul>
+<p>You will have multiple opportunities throughout the semester to improve your score on a particular standard.</p>
+<p>In addition, up to 4 points will be awarded based on the degree of your participation in the course. You will have an opportunity to self-assess your participation mid-semester and at the end of the course according to the following rubric:</p>
+<table>
+<colgroup>
+<col width="18%" />
+<col width="81%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Score</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">4</td>
+<td align="left">Student is almost always present in class and is almost always an active participant in course discussions. Student contributes weekly to Slack discussions and posts weekly comments on course readings and lectures in Perusall.</td>
+</tr>
+<tr class="even">
+<td align="center">3</td>
+<td align="left">Student is often present in class and is often an active participant in course discussions. Student contributes most weeks to Slack discussions and posts comments on course readings and lectures in Perusall most weeks.</td>
+</tr>
+<tr class="odd">
+<td align="center">2</td>
+<td align="left">Student is often present in class and is only sometimes an active participant in course discussions. Student contributes every few weeks to Slack discussions and posts comments on course readings and lectures in Perusall every few weeks.</td>
+</tr>
+<tr class="even">
+<td align="center">1</td>
+<td align="left">Student is often present in class, but is rarely an active participant in course discussions. Student contributes rarely contributes to Slack discussions and rarely posts comments on course readings and lectures in Perusall.</td>
+</tr>
+<tr class="odd">
+<td align="center">0</td>
+<td align="left">Student misses more than 75% of classes and almost never contributes to Slack discussions or posts comments on course readings and lectures in Perusall.</td>
+</tr>
+</tbody>
+</table>
+<p>Note that while I will most often assign the grade that you give yourself for participation, I reserve the right to revise the grade if it considerably misaligns with my observations of your engagement. In these cases, I will always open a discussion with you before revising the grade.</p>
+<p>At the end of the semester, I will sum your scores on all standards, and final grades will be awarded as follows:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Grade</th>
+<th align="center">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">A</td>
+<td align="center">60-64 points</td>
+</tr>
+<tr class="even">
+<td align="center">A-</td>
+<td align="center">58-59 points</td>
+</tr>
+<tr class="odd">
+<td align="center">B+</td>
+<td align="center">56-57 points</td>
+</tr>
+<tr class="even">
+<td align="center">B</td>
+<td align="center">54-55 points</td>
+</tr>
+<tr class="odd">
+<td align="center">B-</td>
+<td align="center">52-53 points</td>
+</tr>
+<tr class="even">
+<td align="center">C+</td>
+<td align="center">50-51 points</td>
+</tr>
+<tr class="odd">
+<td align="center">C</td>
+<td align="center">48-49 points</td>
+</tr>
+<tr class="even">
+<td align="center">C-</td>
+<td align="center">46-47 points</td>
+</tr>
+<tr class="odd">
+<td align="center">D+</td>
+<td align="center">44-45 points</td>
+</tr>
+<tr class="even">
+<td align="center">D</td>
+<td align="center">42-43 points</td>
+</tr>
+<tr class="odd">
+<td align="center">D-</td>
+<td align="center">40-41 points</td>
+</tr>
+<tr class="even">
+<td align="center">E</td>
+<td align="center">39 or less points</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="how-will-i-be-assessed-on-the-course-standards" class="section level2">
+<h2>How will I be assessed on the course standards?</h2>
+<div id="informal-assessments" class="section level3">
+<h3>Informal Assessments</h3>
+<div id="readings" class="section level4">
+<h4>Readings</h4>
+<p>Each week, you will be assigned a section of the course texts to read prior to class. I expect that you will come having read this section in order to prepare for in-class exercise and labs. You do not need to complete the exercises in the course texts but may choose to do so if you wish. All course readings will be available in Perusall, and you can post questions and comments in the reading for myself or your classmates to answer.</p>
+</div>
+<div id="video-lectures" class="section level4">
+<h4>Video Lectures</h4>
+<p>In some weeks, I will post video lectures to Perusall as supplements to the material covered in the reading. I expect that you will view these lectures prior to class in order to prepare for in-class exercises and labs. You may leave comments in Perusall at certain timestamps as questions come up.</p>
+</div>
+<div id="problem-sets" class="section level4">
+<h4>Problem Sets</h4>
+<p>Each week you will be given a series of problem sets for practicing the skills we’ve learned in class. Each problem set will be designed to give you an opportunity to assess your own understanding of 1-2 course standards. These problem sets are not formal assessments of your work and will not be considered in determining your grade. Completing any given problem set is <em>optional</em> but highly recommended for your success in the course. I also encourage you to work in groups to complete the problem sets. Answers to problem sets will be posted the following week.</p>
+</div>
+</div>
+<div id="formal-assessments" class="section level3">
+<h3>Formal Assessments</h3>
+<div id="quizzes" class="section level4">
+<h4>Quizzes</h4>
+<p>There will be 7 take-home quizzes administered over the course of semester, and each quiz will be designed to assess your fluency in a set of course standards. Each quiz will be administered in Moodle and will include both computational prompts and written prompts. Quizzes will be taken at home and are open book/open Internet. Once a quiz is posted, you may start it at any time before its due date. While my expectation is that each quiz should take no more than 30 minutes to complete, once you start a quiz, you will have 3 hours to complete it.</p>
+<p>You can earn up to two points towards each standard being assessed based on your quiz responses. There will be no re-takes of quizzes, but by the second quiz, each subsequent quiz will include optional questions for reassessing the standards covered by the previous quiz, and your score for each standard will be based on your most recent assessment. In this way, you will have an opportunity to improve your scores on standards.</p>
+</div>
+<div id="mini-projects" class="section level4">
+<h4>Mini-Projects</h4>
+<p>There will be 4 mini-projects, to be completed in groups of 3-4, assigned over the course of the semester. In each you will have an opportunity to demonstrate fluency in standards we have covered up to that point in the semester. I will provide prompts for each mini-project, but you will have a lot of flexibility to demonstrate your own creativity and explore your own interests in designing a project around the prompt. You can earn up to two points towards each standard based on your mini-project submission.</p>
+</div>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = false;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
