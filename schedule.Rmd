@@ -53,6 +53,15 @@ source("R/buttons.R", local = knitr::knit_global())
 #source("css/custom.css", local = knitr::knit_global())
 ```
 
+<div class="alert alert-dismissible alert-info">
+  Styling and infrastructure for this page inspired by <a class="white-link" rel="license" href="https://beanumber.github.io/sds192/schedule.html">related syllabi</a> produced by Ben Baumer and R. Jordan Crouser.
+</div>
+
+<div class="alert alert-dismissible alert-warning">
+  All readings for this course will be available in our course Perusall, which is linked in Moodle. I encourage you to complete the readings there so that you can leave comments and questions as they come up. 
+</div>
+
+
 ```{r print-schedule, message=FALSE, results='asis'}
 for (i in 1:nrow(topics)){
   
