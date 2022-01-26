@@ -2,7 +2,8 @@ topic_id,topic_abbr,announcement
 1,data_science,If you wish you may fill out the Trigger Warnings Questionnaire in Moodle.
 1,data_science,Be sure to configure Slack notifications for our course. I also encourage you to download and install a Desktop version of Slack. 
 1,data_science,Class slides are [here](slides/Day1-Intro.html)
-2,datasets,
+2,datasets, Class slides are [here](slides/Day2-Datasets.html)
+2,datasets, Today's worksheet is [here](slides/Day2-Datasets-Workhsheet.pdf)
 3,r_intro,Trigger warning: Monday's reading opens with a case study on gun homicide in the U.S.
 3,r_intro,The CS Liaisons will be hosting a software install session from 2:30-4 today. More information soon. 
 4,data_fundamentals,
