@@ -1,4 +1,4 @@
-﻿topic_id,topic_abbr,topic,date
+topic_id,topic_abbr,topic,date
 1,data_science,What is Data Science?,1/24/22
 2,datasets,What are datasets?,1/26/22
 3,r_intro,Lab: Introduction to R,1/28/22
@@ -16,7 +16,7 @@
 15,recap1,Recap,2/25/22
 16,subsetting,Subsetting Data,2/28/22
 17,aggregating,Aggregating and Summarizing Data,3/2/22
-18,facet_filter,Lab: Exploratory Data Analysis,3/5/22
+18,facet_filter,Lab: Exploratory Data Analysis,3/4/22
 19,data_acquisition,Importing and Cleaning Datasets,3/7/22
 20,pivoting,Pivoting Datasets,3/9/22
 21,tidying,Lab: Tidying Datasets,3/11/22
