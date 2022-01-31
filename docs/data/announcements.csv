@@ -8,7 +8,10 @@ topic_id,topic_abbr,announcement
 3,r_intro,The CS Liaisons will be hosting a software install session from 2:30-4 today. More information soon. 
 3,r_intro,Today's lab is posted [here](https://github.com/SDS-192-Intro/getting-started). 
 3,r_intro, I will remain on the call for one hour past our scheduled class time to help anyone that would like to finish the lab. Please note that I won't be able to do this every week. 
-4,data_fundamentals,
+4,data_fundamentals,You do not need to follow along with exercises in the course texts but may choose to do so if you wish. 
+4,data_fundamentals,Please thread responses to messages in Slack. 
+4,data_fundamentals,Class slides are [here](slides/Day4-DataFundamentals.html)
+4,data_fundamentals,Today's worksheet is [here](../slides/Day4-DataFundamentals-Worksheet.Rmd). Download it and then open it in RStudio. 
 5,summarizing,
 6,learning_code,
 7,grammar_graphics,

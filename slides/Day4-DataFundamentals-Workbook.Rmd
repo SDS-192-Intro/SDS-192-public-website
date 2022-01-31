@@ -1,0 +1,62 @@
+---
+title: "Day Four: Data Fundamentals and Intro to RStudio Environment"
+subtitle: "SDS 192: Introduction to Data Science"
+author: |
+  Lindsay Poirier<br/>
+  <span style = 'font-size: 70%;'>
+  [Statistical & Data Sciences](http://www.smith.edu/sds), Smith College<br/>
+  </span>
+date: |
+  Spring 2022<br/>
+  `r sds::img_logo(width = 64)`
+output: pdf_document
+---
+
+```{r}
+global_landslide <- read.csv("https://data.nasa.gov/api/views/dd9e-wu2v/rows.csv")
+```
+
+1. Run the code chunk above, and then start to review the dataset using strategies we discussed in class. You might check its dimensions (number of columns and number of row), column names, and print the first 6 rows. You can use the code chunk below to help you. 
+
+```{r}
+# Check number of columns
+
+# Check the column names
+
+# Print the first six rows
+
+# View the data frame
+```
+
+2. Find one nominal variable in the dataset, one ordinal, one discrete, and one continuous. Uncomment the lines below, and store the entire column of values in the variables.
+
+```{r}
+#nominal <- 
+#ordinal <- 
+#discrete <-
+#continuous <- 
+```
+
+3. Check the class of each of these vectors. Are they what you expected?
+
+```{r}
+# Check the class of the nominal variable below.
+
+# Check the class of the ordinal variable below.
+
+# Check the class of the continuous variable below.
+
+# Check the class of the discrete variable below.
+
+
+```
+
+4. Determine the number of distinct possible values in the nominal and ordinal variables.
+
+```{r}
+# Calculate the number of distinct values in the nominal variable.
+
+# Calculate the number of distinct values in the ordinal variable. 
+
+```
+
