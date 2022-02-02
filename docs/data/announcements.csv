@@ -12,7 +12,9 @@ topic_id,topic_abbr,announcement
 4,data_fundamentals,Please thread responses to messages in Slack. 
 4,data_fundamentals,Class slides are [here](slides/Day4-DataFundamentals.html)
 4,data_fundamentals,Today's worksheet is in Moodle. Download it and then open it in RStudio. 
-5,summarizing,
+5,summarizing, Class slides are [here](slides/Day5-DataSummaries.html)
+5,summarizing, Today's worksheet is in Moodle. Download it and then open it in RStudio.
+5,summarizing, Monday's solutions are [here](slides/Day4-DataFundamentals-Workbook-Solutions.pdf).
 6,learning_code,
 7,grammar_graphics,
 8,viz_conventions,

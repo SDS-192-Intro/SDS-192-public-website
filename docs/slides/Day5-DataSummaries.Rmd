@@ -1,0 +1,325 @@
+---
+title: "Day Five: Vector Functions and Operations"
+subtitle: "SDS 192: Introduction to Data Science"
+author: |
+  Lindsay Poirier<br/>
+  <span style = 'font-size: 70%;'>
+  [Statistical & Data Sciences](http://www.smith.edu/sds), Smith College<br/>
+  </span>
+date: |
+  Spring 2022<br/>
+  `r sds::img_logo(width = 64)`
+output:
+  sds::moon_reader:
+    lib_dir: libs
+    css: xaringan-custom.css
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+```{r xaringan-themer, include=FALSE}
+# sds::duo_smith()
+sds::mono_light_smith()
+```
+
+class: center, middle
+# What were some takeaways from class last Monday?
+
+---
+
+# For Today
+
+* Reviewing Large Data Frames
+* Checking for row uniqueness
+* Basic math operations and functions
+* Basic string operations and functions
+* Converting variable types
+* Dealing with missing values
+
+---
+
+# Let's recreate the data frame from Monday to help us through today's lecture
+
+```{r}
+values <- c(1, 2, 3, 4, 5)
+colors <- c("black", "red", "black", "red", "black")
+suits <- c("spade", "diamond", "spade", "heart", "club")
+  
+# Create a new data frame for playing cards
+playing_card_data <- data.frame(values, 
+                                colors, 
+                                suits)
+```
+
+---
+
+# Reviewing Data Frames
+
+* Ways to review data frames:
+  * `View(playing_card_data)`
+  * Click on the playing_card_data variable in your console (same as above)
+  * `head(playing_card_data)`: returns first six rows of dataset
+  * `names(playing_card_data)`: returns the dataset's column names
+  * `nrow(playing_card_data)`: returns the number of rows in the dataset
+  * `ncol(playing_card_data)`: returns the number of columns in the dataset
+
+---
+
+# Unique Keys
+
+* Many datasets include a column with a number or string of characters that uniquely identify each row or observation.  
+* This key should never repeat in the column, allowing us to identify each row. 
+* Why might we need this?
+
+---
+
+# How do we make sure a column is actually functioning as a unique key?
+
+.pull-left[
+* Write some lines of code to determine whether the `values` column can act as unique key for our `playing_cards_data`.
+* Hint: You need to check whether the values in the column ever repeat. 
+]
+.pull-right[
+```{r echo=FALSE}
+head(playing_card_data)
+```
+
+]
+
+---
+
+# What if there is no unique key?
+
+
+.pull-left[
+* Sometimes we use multiple columns to identify each row. 
+* What two columns here would uniquely identify each row? How could we adjust our previous code to test for this?
+* What if no combination of values uniquely identify each row? This means that we have duplicates in our dataset. 
+]
+
+.pull-right[
+```{r echo=FALSE}
+values <- c(1, 2, 3, 4, 5, 2)
+colors <- c("black", "red", "black", "red", "black", "black")
+suits <- c("spade", "diamond", "spade", "heart", "club", "club")
+  
+# Create a new data frame for playing cards
+playing_card_data <- data.frame(values, 
+                                colors, 
+                                suits)
+
+playing_card_data
+```
+]
+
+---
+
+# Math Operations
+
+* `R` can function as a calculator:
+
+```{r}
+3 + 3
+8 / 2
+2 * 2
+```
+
+---
+
+# Math Operations
+
+* Why does this produce an error?
+
+```{r, error=TRUE}
+"3" + "3"
+```
+
+---
+
+# Math Functions on Vectors
+
+* Let's say I wanted to calculate the sum of my hand of cards. We can pass the `values` column as an argument to the `sum()` function. 
+
+```{r}
+sum(playing_card_data$values)
+```
+
+* What if I wanted to calculate the maximum value in my hand?
+* What if I wanted to calculate the median value in my hand?
+
+---
+
+# Math Functions on Vectors
+
+* Why does this produce an error? 
+
+```{r, error=TRUE}
+sum(playing_card_data$colors)
+```
+
+---
+
+# String Operations
+
+* We can *concatenate* strings by taking two separate strings and combining them into a single string. We use the `paste()` function for this. 
+* Enter `?paste()` into the console. What arguments are required?
+
+---
+
+# String Operations
+
+* We can *concatenate* strings by taking two separate strings and combining them into a single string. We use the `paste()` function for this. 
+
+```{r}
+word1 <- "Harry"
+word2 <- "Sally"
+paste("When", word1, "Met", word2, sep = " ")
+```
+
+---
+
+# String Operations
+
+* Why doesn't this produce an error?
+
+```{r, error=TRUE}
+word1 <- 2.3
+word2 <- 34
+paste("When", word1, "Met", word2, sep = " ")
+```
+
+---
+
+# String Functions on Vectors
+
+* Let's say I wanted to convert all of the characters in the `colors` column to uppercase. We can pass the `colors` column to the `toupper()` function. 
+
+```{r}
+toupper(playing_card_data$colors)
+```
+
+* What if I wanted to convert the characters to lowercase?
+
+---
+
+# Converting Variable Types
+
+* What if we wanted to produce a sentence that listed the values of the cards in our hand?
+
+```{r}
+playing_card_data$string_values <- 
+  as.character(playing_card_data$values)
+
+part1 <- paste(playing_card_data$string_values, 
+               collapse = ", ")
+paste("I'm holding a", part1, sep = " ")
+```
+
+> Challenge: How might we add the word "and" between the last two values?
+
+---
+
+# Converting Variable Types
+
+* How might we add the word "and" between the last two values??
+
+```{r}
+playing_card_data$string_values <- 
+  as.character(playing_card_data$values)
+
+part1 <- paste(playing_card_data$string_values[1:5], 
+               collapse = ", ")
+part2 <- playing_card_data$string_values[6]
+paste("I'm holding a", part1, "and", part2, sep = " ")
+```
+
+> At-home Challenge: How might we add an Oxford comma?
+
+---
+
+# Converting Variable Types
+
+* What if we were supplied these numbers as characters?
+
+```{r, error=TRUE}
+playing_card_data$values <- 
+  c("1", "2", "3", "4", "5", "6")
+sum(playing_card_data$values)
+```
+
+```{r}
+playing_card_data$values <- 
+  as.numeric(playing_card_data$values)
+sum(playing_card_data$values)
+```
+
+---
+
+# Factors
+
+* What if we were dealt a new hand of cards that only included face cards? What kind of variable is this? How do we indicate the order of values to R?
+
+```{r}
+playing_card_data$values <- 
+  c("K", "Q", "J", "Q", "A", "K")
+sort(playing_card_data$values)
+
+playing_card_data$values <- factor(playing_card_data$values, 
+                                   levels = c("J", "Q", "K", "A"))
+sort(playing_card_data$values)
+```
+
+---
+
+# Missing Values
+
+* Remember that missing values still have a position in rectangular datasets
+* Missing values get recorded as `NA` in R
+* ...but sometimes analysts put words or numbers in their datasets to indicate missingness:
+  * "NONE"
+  * -999
+  * "" <- this is the most challenging to uncover!
+* In a few weeks, we will talk about how to convert these to NAs
+* ...but what happens when we try to perform functions on vectors that contain missing values?
+
+---
+
+# Missing Values in Math Functions
+
+* We can use `na.rm = TRUE` to ignore NA values in math functions. 
+
+```{r}
+playing_card_data$values <- c(1, 2, NA, 4, NA, 6)
+
+sum(playing_card_data$values)
+sum(playing_card_data$values, na.rm = TRUE)
+```
+
+---
+
+# Checking number of missing values
+
+* We can use `is.na()` to check if a value is an NA value. This will return TRUE or FALSE.
+* What other function might we use to check the number of NA values in a vector?
+
+```{r}
+playing_card_data$values <- c(1, 2, NA, 4, NA, 6)
+
+sum(is.na(playing_card_data$values))
+```
+
+---
+
+# For Wednesday
+
+* No reading. Keep working through problem sets!
+* Wednesday: Applying functions to data frame values
+* Friday: Learning to code: debugging, cheatsheets, etc. 
+

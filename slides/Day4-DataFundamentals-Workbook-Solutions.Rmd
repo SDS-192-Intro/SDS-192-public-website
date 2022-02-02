@@ -1,0 +1,86 @@
+---
+title: "Day Four: Data Fundamentals and Intro to RStudio Environment"
+subtitle: "SDS 192: Introduction to Data Science"
+author: |
+  Lindsay Poirier<br/>
+  <span style = 'font-size: 70%;'>
+  [Statistical & Data Sciences](http://www.smith.edu/sds), Smith College<br/>
+  </span>
+date: |
+  Spring 2022<br/>
+output: pdf_document
+---
+
+```{r}
+global_landslide <- read.csv("https://data.nasa.gov/api/views/dd9e-wu2v/rows.csv")
+```
+
+1. Run the code chunk above, and then start to review the dataset using strategies we discussed in class. You might check its dimensions (number of columns and number of row), column names, and print the first 6 rows. You can use the code chunk below to help you. 
+
+```{r}
+# Check number of columns
+ncol(global_landslide)
+
+# Check the column names
+names(global_landslide)
+
+# Print the first six rows
+head(global_landslide)
+
+# View the data frame
+#View(global_landslide)
+```
+
+2. Find one nominal variable in the dataset, one ordinal, one discrete, and one continuous. Uncomment the lines below, and store the entire column of values in the variables.
+
+```{r}
+
+#There are many including source_link, event_id, event_title, event_description, landslide_category, etc.
+nominal <- global_landslide$source_name
+
+#There are a few including location_accuracy and landslide_size
+ordinal <- global_landslide$landslide_size
+
+#There are a few including fatality_count, injury_count, and admin_division_population
+discrete <- global_landslide$fatality_count
+
+#There are a few including latitude and longitude
+continuous <- global_landslide$latitude
+
+#Feel free to ask if you selected other variables and are unsure!
+```
+
+3. Check the class of each of these vectors. Are they what you expected?
+
+```{r}
+# Check the class of the nominal variable below.
+
+class(nominal)
+
+# Check the class of the ordinal variable below.
+
+class(ordinal)
+
+# Check the class of the continuous variable below.
+
+class(continuous)
+
+# Check the class of the discrete variable below.
+
+class(discrete)
+
+```
+
+4. Determine the number of distinct possible values in the nominal and ordinal variables.
+
+```{r}
+# Calculate the number of distinct values in the nominal variable.
+
+length(unique(nominal))
+
+# Calculate the number of distinct values in the ordinal variable. 
+
+length(unique(ordinal))
+
+```
+
