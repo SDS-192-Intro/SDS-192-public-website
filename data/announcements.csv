@@ -15,7 +15,7 @@ topic_id,topic_abbr,announcement
 5,summarizing, Class slides are [here](slides/Day5-DataSummaries.html)
 5,summarizing, Today's worksheet is in Moodle. Download it and then open it in RStudio.
 5,summarizing, Monday's solutions are [here](slides/Day4-DataFundamentals-Workbook-Solutions.pdf).
-6,learning_code,
+6,learning_code,Today's and all future labs are [here](https://github.com/SDS-192-Intro/sds-192-labs).
 7,grammar_graphics,
 8,viz_conventions,
 8,viz_conventions,
