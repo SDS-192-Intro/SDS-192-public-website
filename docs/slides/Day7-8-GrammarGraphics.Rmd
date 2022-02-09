@@ -16,7 +16,9 @@ output:
     nature:
       highlightStyle: github
       highlightLines: true
-      countIncrementalSlides: false
+      countIncrementalSlides: false    
+      navigation:
+        scroll: false
 ---
 
 
@@ -29,6 +31,33 @@ library(tidyverse)
 # sds::duo_smith()
 sds::mono_light_smith()
 ```
+
+---
+
+# Quiz 1 Posted
+
+.pull-left[
+**What does it cover?**
+* tracing data provenance
+  * reviewing data dictionaries and metadata
+  * determining the unit of observation and variables
+* data fundamentals
+  * types of variables
+  * data object types in `R`
+* error resolution and problem-solving
+  * fixing errors in code
+  * reviewing help pages
+]
+
+.pull-right[
+**How should I prepare?**
+* review lectures slides and lecture notes, especially on the above topics
+* review problem sets, especially those you found challenging
+* visit office hours or schedule a time to meet with me on Moodle
+* visit drop-in tutoring at Spinelli Center with specific topics you'd like help on
+]
+
+---
 
 class: center, middle
 # What were some takeaways from class last Monday?
@@ -210,6 +239,20 @@ pioneer_valley_census_data <- read.csv("https://raw.githubusercontent.com/SDS-19
 hampshire_census_data <- pioneer_valley_census_data %>% 
   filter(COUNTY == "Hampshire")
 ```
+
+---
+
+# Data Ethics Questions
+
+1. What assumptions and commitments informed the design of this dataset?
+  * Definitions for certain census categories like "Unemployed" or "Poverty" may exclude certain people.
+  * Shifting categorizations for race, gender, and other demographics may not represent how people identify.
+2. Who has had a say in data collection and analysis regarding this dataset? Who has been excluded?
+  * US Census Bureau and other governing bodies
+  * Activists and social movements
+3. What are the benefits and harms of this dataset, and how are they distributed amongst diverse social groups? 
+  * Concerns about surveillance or mistreatment amongst those counted.
+  * Concerns about under-representation amongst those uncounted. 
 
 ---
 
