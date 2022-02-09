@@ -18,8 +18,8 @@ topic_id,topic_abbr,announcement
 6,learning_code,Today's and all future labs are [here](https://github.com/SDS-192-Intro/sds-192-labs).
 6,learning_code, Last Wednesday's solutions are [here](slides/Day5-DataSummaries-Workbook-Solutions.pdf).
 7,grammar_graphics,
-8,viz_conventions,
-8,viz_conventions,
+8,viz_conventions,Class slides are [here](slides/Day7-8-GrammarGraphics.html).
+8,viz_conventions,Quiz 1 has been posted and is due next Wednesday. 
 9,designing_graphics,
 10,frequency_Plots,
 11,boxplots,
