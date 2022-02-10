@@ -1,1 +1,1 @@
-Smith's [Spinelli Center](https://www.smith.edu/qlc/tutoring.html) offers SDS [drop-in tutoring hours](https://www.smith.edu/qlc/tutoring.html?colStats=open#PanelStats) in Sabin-Reed 301 (or via Zoom) on Sunday through Thursday 7-9 PM and Friday 2:35-4:00 PM. 
+Smith's [Spinelli Center](https://www.smith.edu/qlc/tutoring.html) offers SDS [drop-in tutoring hours](https://www.smith.edu/qlc/tutoring.html?colStats=open#PanelStats) in Sabin-Reed 301 (or via Zoom) on Monday through Thursday 7-9 PM. 
