@@ -22,6 +22,7 @@ topic_id,topic_abbr,announcement
 8,viz_conventions,Quiz 1 has been posted and is due next Wednesday. 
 8,viz_conventions,Monday's solutions are [here](https://github.com/SDS-192-Intro/sds-192-labs/blob/main/Day6-ErrorRes/Day6-ProblemSolving-Solutions.pdf). 
 9,designing_graphics, Today's and all future labs are [here](https://github.com/SDS-192-Intro/sds-192-labs).
+9,designing_graphics, The `ggplot()` cheatsheet is [here](https://ggplot2.tidyverse.org/).
 9,designing_graphics, Solutions to Wednesday's exercises are [here](https://github.com/SDS-192-Intro/sds-192-labs/blob/main/Day7-GrammarGraphics/Day7-GrammarGraphics-Solutions.pdf).
 9,designing_graphics, Remember our data challenge!
 10,frequency_Plots,
