@@ -25,7 +25,7 @@ topic_id,topic_abbr,announcement
 9,designing_graphics, The `ggplot()` cheatsheet is [here](https://ggplot2.tidyverse.org/).
 9,designing_graphics, Solutions to Wednesday's exercises are [here](https://github.com/SDS-192-Intro/sds-192-labs/blob/main/Day7-GrammarGraphics/Day7-GrammarGraphics-Solutions.pdf).
 9,designing_graphics, Remember our data challenge!
-10,frequency_Plots,
+10,frequency_Plots, Class slides are [here](slides/Day10-Frequency.html)
 11,boxplots,
 12,multivariate,
 13,github,,
