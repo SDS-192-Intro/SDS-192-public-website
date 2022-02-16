@@ -23,6 +23,7 @@ output:
 
 
 ```{r setup, include=FALSE}
+knitr::opts_chunk$set(dpi=300)
 options(htmltools.dir.version = FALSE)
 library(tidyverse)
 ```

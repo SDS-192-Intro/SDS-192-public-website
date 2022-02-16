@@ -156,8 +156,8 @@ Today, for lecture, I'm going to ask that you just follow along. You will have a
 
 ```{r include=FALSE}
 library(spotifyr)
-id <- '574c77e540fe4270b378cf73fb9c6e52'
-secret <- 'ad3c79792ef74a1e816ad135aa4e2f0d'
+id <- Sys.getenv("SPOTIFY_CLIENT_ID")
+secret <- Sys.getenv("SPOTIFY_CLIENT_SECRET")
 Sys.setenv(SPOTIFY_CLIENT_ID = id)
 Sys.setenv(SPOTIFY_CLIENT_SECRET = secret)
 access_token <- get_spotify_access_token()
@@ -356,7 +356,7 @@ ggplot(artist, aes(x = key_mode, fill = album_name)) +
 ```
 
 > How might I compare this across Janelle Monáe's albums?
-
+Sys.getenv()
 ]
 .pull-right[
 ```{r echo=FALSE}
