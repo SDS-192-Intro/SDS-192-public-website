@@ -1,1 +1,1 @@
-# SDS-192-public-website
+# SDS 192 public website
