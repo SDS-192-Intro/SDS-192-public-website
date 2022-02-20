@@ -19,7 +19,7 @@ global_landslide <- read.csv("https://data.nasa.gov/api/views/dd9e-wu2v/rows.csv
 
 ```{r}
 # Check number of columns
-ncol(global_landslide)
+dim(global_landslide)
 
 # Check the column names
 names(global_landslide)
