@@ -153,6 +153,8 @@ sds::mono_light_smith()
 
 # Pull Error
 
+![](img/pull-error.png)
+> This error indicates that pulling the changes that you or someone else made in remote would overwrite the changes you made on your local machine. You should commit, pull, and then push. 
 
 ---
 
