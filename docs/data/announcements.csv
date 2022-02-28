@@ -35,8 +35,12 @@ topic_id,topic_abbr,announcement
 13,github,Class slides are [here](slides/Day13-GitHub.html)
 14,markdown,Class slides are [here](slides/Day14-Markdown.html)
 14,markdown,Day 12 solutions are [here](https://github.com/SDS-192-Intro/sds-192-labs/blob/main/Day12-Multivariate/Day12-Multivariate-Solutions.Rmd)
-15,recap1,
-16,subsetting,
+15,recap1, Snow Day!
+16,subsetting, Day 14 solutions are [here](https://github.com/SDS-192-Intro/sds-192-labs/blob/main/Day14-rmarkdown/Day14-rmarkdown-Solutions.Rmd)
+16,subsetting, Class slides are [here](slides/Day16-Subsetting.html)
+16,subsetting, MP1 due Friday!
+16,subsetting, If you struggled on quiz 2 be sure to study the y-axis labels on all of our frequency plots and pay attention to units of observation!
+16,subsetting, Trigger warning: This week's lab will review data that demonstrates racial profiling in policing. We will be reproducing the NYCLU's data analysis of stop and frisk in NYC in 2011. 
 17,aggregating,
 18,facet_filter,
 19,data_acquisition,
