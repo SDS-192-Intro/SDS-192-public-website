@@ -34,7 +34,7 @@ sds::mono_light_smith()
 
 ```{r include=FALSE}
 library(tidyverse)
-hospitals <- read.csv("datasets/Hospital_Cost_Report_2018.csv")
+hospitals <- read.csv("https://raw.githubusercontent.com/SDS-192-Intro/SDS-192-public-website/main/slides/datasets/Hospital_Cost_Report_2018.csv")
 ```
 
 # For today
@@ -43,6 +43,17 @@ hospitals <- read.csv("datasets/Hospital_Cost_Report_2018.csv")
 * `select()`
 * `filter()`
 * `arrange()`
+
+---
+
+# Today's data
+
+* Hospital Cost Reports, 2018
+
+```{r}
+library(tidyverse)
+hospitals <- read.csv("https://raw.githubusercontent.com/SDS-192-Intro/SDS-192-public-website/main/slides/datasets/Hospital_Cost_Report_2018.csv")
+```
 
 ---
 

@@ -34,6 +34,18 @@ class: center, middle, inverse, title-slide
 
 ---
 
+# Today's data
+
+* Hospital Cost Reports, 2018
+
+
+```r
+library(tidyverse)
+hospitals &lt;- read.csv("https://raw.githubusercontent.com/SDS-192-Intro/SDS-192-public-website/main/slides/datasets/Hospital_Cost_Report_2018.csv")
+```
+
+---
+
 
 class: center, middle
 # Data wrangling is a process for transforming a dataset from its original form into a more relevant form.
@@ -492,7 +504,7 @@ hospitals %&gt;%
   labs(x = "Facility Type", y = "Number of ______")
 ```
 
-![](Day16-Subsetting_files/figure-html/unnamed-chunk-18-1.png)&lt;!-- --&gt;
+![](Day16-Subsetting_files/figure-html/unnamed-chunk-19-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -506,7 +518,7 @@ hospitals %&gt;%
   labs(x = "", y = "Number of ______")
 ```
 
-![](Day16-Subsetting_files/figure-html/unnamed-chunk-19-1.png)&lt;!-- --&gt;
+![](Day16-Subsetting_files/figure-html/unnamed-chunk-20-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -524,7 +536,7 @@ ggplot(hospitals, aes(x = CCN.Facility.Type, Number.of.Beds, col = Rural.Versus.
   coord_flip()
 ```
 
-![](Day16-Subsetting_files/figure-html/unnamed-chunk-20-1.png)&lt;!-- --&gt;
+![](Day16-Subsetting_files/figure-html/unnamed-chunk-21-1.png)&lt;!-- --&gt;
 
 
     </textarea>
