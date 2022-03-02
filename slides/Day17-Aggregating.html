@@ -66,6 +66,21 @@ class: center, middle, inverse, title-slide
 
 ---
 
+
+
+# Data Challenge Results
+
+| Student | Plot | Award | Rationale |
+| --- | ------ | --- | ------------ |
+| Maggie Needham | Sleep Loss and Violent Crime by County | Best Caption | not only summarized but also helped us interpret the data responsibly |
+| Rachael An | Smoking vs. Life Expectancy | Most Effective Aesthetics | both color and position were used effectively in this plot |
+| Maggie McCoy | Correlation between Adult Smoking, Insufficient Sleep, and Frequent Mental Distress by County | Most Eye-Opening | shows a significant correlation between household income and mental distress |
+| Tseegi Nyamdorj | Smoking vs. Life Expectancy | Most Effective Connection to Peer-Reviewed Research | described an article linking sleep insufficiency to quality of life concerns |
+| Sonnet Lockheardt | Correlation of Median Household Income and Premature Mortality by County | Most news-ready | Provided a clear, effective, and straight-forward visual |
+| Claire Kelly | Thanks for content warning Claire! | Most thought-provoking |  |
+
+---
+
 # For today
 
 * Summarizing
@@ -312,7 +327,6 @@ hospitals_ma %&gt;%
 * `group_by()` groups observations with a shared value in a variable
 * When we combine `group_by()` and `summarize()` we can perform operations *within* groups
 
-.pull-left[
 
 ```r
 hospitals_ma %&gt;%
@@ -321,9 +335,9 @@ hospitals_ma %&gt;%
             total_hopsitals = n(),
             percent_beds_na = sum(is.na(Number.of.Beds)) / n() * 100)
 ```
-]
 
-.pull-right[
+---
+
 
 ```
 ## `summarise()` has grouped output by 'CCN.Facility.Type'. You can override using
@@ -346,7 +360,7 @@ hospitals_ma %&gt;%
 ##  9 STH               R                      1163               5               0
 ## 10 STH               U                     12148              51               0
 ```
-]
+
 
 ---
 

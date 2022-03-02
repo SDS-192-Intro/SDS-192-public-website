@@ -82,6 +82,21 @@ hospitals <- read.csv("https://raw.githubusercontent.com/SDS-192-Intro/SDS-192-p
 
 ---
 
+
+
+# Data Challenge Results
+
+| Student | Plot | Award | Rationale |
+| --- | ------ | --- | ------------ |
+| Maggie Needham | Sleep Loss and Violent Crime by County | Best Caption | not only summarized but also helped us interpret the data responsibly |
+| Rachael An | Smoking vs. Life Expectancy | Most Effective Aesthetics | both color and position were used effectively in this plot |
+| Maggie McCoy | Correlation between Adult Smoking, Insufficient Sleep, and Frequent Mental Distress by County | Most Eye-Opening | shows a significant correlation between household income and mental distress |
+| Tseegi Nyamdorj | Smoking vs. Life Expectancy | Most Effective Connection to Peer-Reviewed Research | described an article linking sleep insufficiency to quality of life concerns |
+| Sonnet Lockheardt | Correlation of Median Household Income and Premature Mortality by County | Most news-ready | Provided a clear, effective, and straight-forward visual |
+| Claire Kelly | Thanks for content warning Claire! | Most thought-provoking |  |
+
+---
+
 # For today
 
 * Summarizing
@@ -289,7 +304,6 @@ hospitals_ma %>%
 * `group_by()` groups observations with a shared value in a variable
 * When we combine `group_by()` and `summarize()` we can perform operations *within* groups
 
-.pull-left[
 ```{r eval=FALSE}
 hospitals_ma %>%
   group_by(CCN.Facility.Type, Rural.Versus.Urban) %>%
@@ -297,9 +311,9 @@ hospitals_ma %>%
             total_hopsitals = n(),
             percent_beds_na = sum(is.na(Number.of.Beds)) / n() * 100)
 ```
-]
 
-.pull-right[
+---
+
 ```{r echo=FALSE}
 hospitals_ma %>%
   group_by(CCN.Facility.Type, Rural.Versus.Urban) %>%
@@ -307,7 +321,7 @@ hospitals_ma %>%
             total_hopsitals = n(),
             percent_beds_na = sum(is.na(Number.of.Beds)) / n() * 100)
 ```
-]
+
 
 ---
 
