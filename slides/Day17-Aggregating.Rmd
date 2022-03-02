@@ -1,0 +1,429 @@
+---
+title: "Day Seventeen: Aggregating Data"
+subtitle: "SDS 192: Introduction to Data Science"
+author: |
+  Lindsay Poirier<br/>
+  <span style = 'font-size: 70%;'>
+  [Statistical & Data Sciences](http://www.smith.edu/sds), Smith College<br/>
+  </span>
+date: |
+  Spring 2022<br/>
+  `r sds::img_logo(width = 64)`
+output:
+  sds::moon_reader:
+    lib_dir: libs
+    css: xaringan-custom.css
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false    
+      navigation:
+        scroll: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(dpi=300)
+options(htmltools.dir.version = FALSE)
+```
+
+```{r xaringan-themer, include=FALSE}
+# sds::duo_smith()
+sds::mono_light_smith()
+```
+
+```{r include=FALSE}
+library(tidyverse)
+library(lubridate)
+hospitals <- read.csv("https://raw.githubusercontent.com/SDS-192-Intro/SDS-192-public-website/main/slides/datasets/Hospital_Cost_Report_2018.csv") %>%
+  mutate(
+    Fiscal.Year.Begin.Date = ymd(Fiscal.Year.Begin.Date),
+    Fiscal.Year.End.Date = ymd(Fiscal.Year.End.Date))
+```
+
+
+# A few reminders!
+
+* Be sure to send me Slack messages vs. email. Feel free to follow-up if I haven't responded in 24 hours. ...but this only applies for weekdays! I try to focus on self-care on weekends.
+* Ask questions via our `#questions` channel whenever possible
+* Office hours on Mondays in McConnell 212; Wednesdays virtual
+* Extension policy for quizzes
+
+---
+
+# For today
+
+* Summarizing
+* Grouping and summarizing
+* Mutating data
+* Grouping and mutating
+* Ungrouping
+
+---
+
+# Today's data
+
+* Hospital Cost Reports, 2018
+
+```{r}
+library(tidyverse)
+hospitals <- read.csv("https://raw.githubusercontent.com/SDS-192-Intro/SDS-192-public-website/main/slides/datasets/Hospital_Cost_Report_2018.csv")
+```
+
+---
+
+
+class: center, middle
+# Data wrangling is a process for transforming a dataset from its original form into a more relevant form.
+
+
+---
+
+
+class: center, middle
+# **Subsetting** data involves selecting relevant variables and observations for analysis.
+
+---
+
+
+class: center, middle
+# **Aggregating** data involves compiling and summarizing data. 
+
+---
+
+# Six "verbs" for data wrangling
+
+* `select()`
+* `filter()`
+* `arrange()`
+* `summarize()`
+* `group_by()`
+* `mutate()`
+
+---
+
+class: center, middle
+# Today, we are going to perform a data analysis of beds available at different MA hospitals. How do you anticipate we go about doing this? What assumptions must we make?
+
+---
+
+# How many times does each hospital appear in this dataset?
+
+```{r}
+length(unique(hospitals$Provider.CCN)) == nrow(hospitals)
+```
+
+> Why might this be happening?
+
+---
+
+class: center, middle
+# How are we going to deal with this issue? For the next few moments, talk with a neighbor about how you might approach this. Your approach can be high-level at first and the move towards technically specific. 
+
+---
+
+# `group_by()`
+
+* `group_by()` groups observations with a shared value in a variable
+* Grouping only changes the metadata of a data frame; we combine `group_by()` with other functions to transform the data frame
+* Values remain in groups unless we `ungroup()` it. This is important if we intend to run further operations on the resulting data.
+
+```{r}
+hospitals <-
+  hospitals %>%
+  group_by(Provider.CCN) %>%
+  filter(Fiscal.Year.End.Date == max(Fiscal.Year.End.Date)) %>%
+  ungroup()
+```
+
+---
+
+# Now let's filter to MA
+
+```{r}
+hospitals_ma <-
+  hospitals %>%
+  filter(State.Code == "MA")
+```
+
+> Why am I storing my data in a new variable name?
+
+---
+
+# Summary functions
+
+![](https://d33wubrfki0l68.cloudfront.net/2b0d818e37178ef348ca8250a6112a2b13072e88/a810c/images/cheatsheets/summary.png)
+> Examples?
+
+---
+
+# `summarize()`
+
+* `summarize()` computes a value across a vector of values and stores it in a new data frame
+
+![](http://ohi-science.org/data-science-training/img/rstudio-cheatsheet-summarise.png)
+
+> How is this different than only applying a summary function to a vector?
+
+---
+
+# `summarize()`
+
+* `summarize()` computes a value across a vector of values and stores it in a new data frame
+
+```{r}
+hospitals_ma %>%
+  summarize(total_beds = sum(Number.of.Beds))
+```
+
+> Why did we get an `NA` value?
+
+---
+
+# `summarize()`
+
+* `summarize()` computes a value across a vector of values and stores it in a new data frame
+* `sum(is.na())` computes the total `NA` values in the vector
+
+```{r}
+hospitals_ma %>%
+  summarize(total_beds = sum(Number.of.Beds, na.rm = TRUE), 
+            total_beds_na = sum(is.na(Number.of.Beds)))
+```
+
+> What if I wanted to know the percentage of rows with `NA` values in the `Number.of.Beds` column?
+
+---
+
+# `summarize()`
+
+* `summarize()` computes a value across a vector of values and stores it in a new data frame
+* `n()` computes the total observations in the vector
+
+```{r}
+hospitals_ma %>%
+  summarize(total_beds = sum(Number.of.Beds, na.rm = TRUE), 
+            percent_beds_na = sum(is.na(Number.of.Beds)) / n() * 100)
+```
+
+> What if I wanted to know the percentage of rows with `NA` values in the `Number.of.Beds` column?
+
+---
+
+class: center, middle
+# But there are very different types of hospitals represented in this dataset. Maybe I want to know the number of beds for each type of hospital. 
+
+---
+
+# `group_by()` %>% `summarize()`
+
+* `group_by()` groups observations with a shared value in a variable
+* When we combine `group_by()` and `summarize()` we can perform operations *within* groups
+
+
+![](https://d33wubrfki0l68.cloudfront.net/902a3182822e6fb555f131a4e6d110272d2e242f/93d29/images/cheatsheets/group_summary.png)
+
+
+---
+
+# `group_by()` %>% `summarize()`
+
+* `group_by()` groups observations with a shared value in a variable
+* When we combine `group_by()` and `summarize()` we can perform operations *within* groups
+
+.pull-left[
+```{r eval=FALSE}
+hospitals_ma %>%
+  group_by(CCN.Facility.Type) %>%
+  summarize(total_beds = sum(Number.of.Beds, na.rm = TRUE), 
+            total_hopsitals = n(),
+            percent_beds_na = sum(is.na(Number.of.Beds)) / n() * 100)
+```
+]
+
+.pull-right[
+```{r echo=FALSE}
+hospitals_ma %>%
+  group_by(CCN.Facility.Type) %>%
+  summarize(total_beds = sum(Number.of.Beds, na.rm = TRUE), 
+            total_hopsitals = n(),
+            percent_beds_na = sum(is.na(Number.of.Beds)) / n() * 100)
+```
+]
+
+---
+
+# `group_by()` %>% `summarize()`
+
+* `group_by()` groups observations with a shared value in a variable
+* When we combine `group_by()` and `summarize()` we can perform operations *within* groups
+
+.pull-left[
+```{r eval=FALSE}
+hospitals_ma %>%
+  group_by(CCN.Facility.Type, Rural.Versus.Urban) %>%
+  summarize(total_beds = sum(Number.of.Beds, na.rm = TRUE), 
+            total_hopsitals = n(),
+            percent_beds_na = sum(is.na(Number.of.Beds)) / n() * 100)
+```
+]
+
+.pull-right[
+```{r echo=FALSE}
+hospitals_ma %>%
+  group_by(CCN.Facility.Type, Rural.Versus.Urban) %>%
+  summarize(total_beds = sum(Number.of.Beds, na.rm = TRUE), 
+            total_hopsitals = n(),
+            percent_beds_na = sum(is.na(Number.of.Beds)) / n() * 100)
+```
+]
+
+---
+
+# `mutate()`
+
+* `mutate()` creates a new variable (column) in a data frame and fills values according to criteria we provide
+
+![](https://d33wubrfki0l68.cloudfront.net/baeec2f985b2ec36388ba4d18960eebe59911ff3/bce5f/images/cheatsheets/mutate.png)
+---
+
+# `mutate()`
+
+* `mutate()` creates a new variable (column) in a data frame and fills values according to criteria we provide
+
+> What would the following lines of code do?
+
+```{r eval=FALSE}
+hospitals_ma %>%
+  mutate(Address = paste(Street.Address, City, State.Code, Zip.Code))
+
+hospitals_ma %>%
+  mutate(Hospital.Name.Lower = tolower(Hospital.Name))
+
+hospitals_ma %>%
+  mutate(Percentage.State.Beds = Number.of.Beds/sum(Number.of.Beds, na.rm = TRUE) * 100)
+```
+
+---
+
+# `mutate()`
+
+```{r}
+hospitals_ma %>%
+  mutate(Address = paste(Street.Address, City, State.Code, Zip.Code)) %>%
+  select(Street.Address, City, Address) %>%
+  head()
+```
+
+---
+
+# `mutate()`
+
+```{r}
+hospitals_ma %>%
+  mutate(Hospital.Name.Lower = tolower(Hospital.Name)) %>%
+  select(Hospital.Name, Hospital.Name.Lower) %>%
+  head()
+```
+
+---
+
+# `mutate()`
+
+```{r}
+hospitals_ma %>%
+  mutate(Percentage.State.Beds = Number.of.Beds/sum(Number.of.Beds, na.rm = TRUE) * 100) %>%
+  select(Number.of.Beds, Percentage.State.Beds) %>%
+  head()
+```
+
+---
+
+# `group_by()` %>% `mutate()`
+
+> How do you expect this to be different than `group_by()` %>% `summarize()`? Turn to a neighbor to discuss. 
+
+> Hint: Check out the slides with the images for what `summarize()` and `mutate()` do to data frames. 
+
+---
+
+# `group_by()` %>% `mutate()`
+
+> What do you expect this line of code to do?
+
+```{r eval=FALSE}
+hospitals_ma %>%
+  group_by(City) %>%
+  mutate(Total.Beds.City = sum(Number.of.Beds))
+```
+
+---
+
+# `group_by()` %>% `mutate()`
+
+```{r}
+hospitals_ma %>%
+  group_by(City) %>%
+  mutate(Total.Beds.City = sum(Number.of.Beds)) %>%
+  arrange(desc(City)) %>%
+  select(Provider.CCN, City, Total.Beds.City) %>%
+  head()
+```
+
+---
+
+# Why doesn't this return the city with the maximum total beds?
+
+```{r}
+hospitals_ma %>%
+  group_by(City) %>%
+  mutate(Total.Beds.City = sum(Number.of.Beds)) %>%
+  filter(Total.Beds.City == max(Total.Beds.City)) %>%
+  select(City, Total.Beds.City)
+```
+
+---
+
+# `ungroup()`
+
+* Once we've `group_by()` the data frame will remain grouped until we `ungroup()` it
+* All subsequent functions before `ungroup()` are applied within groups
+
+.pull-left[
+```{r eval=FALSE}
+hospitals_ma %>%
+  group_by(City) %>%
+  mutate(Total.Beds.City = sum(Number.of.Beds, na.rm = TRUE)) %>%
+  ungroup() %>%
+  filter(Total.Beds.City == max(Total.Beds.City)) %>%
+  select(City, County, Total.Beds.City)
+```
+
+> Why does Boston appear so many times here? How could I have approached this differently?
+
+]
+.pull-right[
+```{r echo=FALSE}
+hospitals_ma %>%
+  group_by(City) %>%
+  mutate(Total.Beds.City = sum(Number.of.Beds, na.rm = TRUE)) %>%
+  ungroup() %>%
+  filter(Total.Beds.City == max(Total.Beds.City)) %>%
+  select(City, County, Total.Beds.City)
+```
+
+]
+
+---
+
+# An alternative approach
+
+> What do I lose here? 
+
+```{r}
+hospitals_ma %>%
+  group_by(City) %>%
+  summarize(Total.Beds.City = sum(Number.of.Beds, na.rm = TRUE)) %>%
+  ungroup() %>%
+  filter(Total.Beds.City == max(Total.Beds.City))
+```
