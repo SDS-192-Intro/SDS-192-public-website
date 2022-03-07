@@ -293,3 +293,6 @@ table.dataTable.hover tbody tr:hover, table.dataTable.display tbody tr:hover {
   width: 32%;
   float: right;
 }
+.small .remark-code { 
+  font-size: 0.8rem; !important;
+}

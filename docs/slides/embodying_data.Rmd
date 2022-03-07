@@ -1,0 +1,71 @@
+---
+title: "Hospital Tables"
+author: "Lindsay Poirier"
+date: "3/1/2022"
+output: word_document
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(lubridate)
+hospitals <- read.csv("https://raw.githubusercontent.com/SDS-192-Intro/SDS-192-public-website/main/slides/datasets/Hospital_Cost_Report_2018.csv") %>%
+  mutate(
+    Fiscal.Year.Begin.Date = ymd(Fiscal.Year.Begin.Date),
+    Fiscal.Year.End.Date = ymd(Fiscal.Year.End.Date))
+```
+
+
+```{r include=FALSE}
+hospitals_ma <-
+  hospitals %>%
+  select(Provider.CCN, Hospital.Name, City, State.Code, Fiscal.Year.End.Date, CCN.Facility.Type, Rural.Versus.Urban, Number.of.Beds) %>%
+  filter(State.Code == "MA")
+```
+
+```{r include=FALSE}
+hospitals_al <-
+  hospitals %>%
+  select(Provider.CCN, Hospital.Name, City, State.Code, Fiscal.Year.End.Date, CCN.Facility.Type, Rural.Versus.Urban, Number.of.Beds) %>%
+  filter(State.Code == "AL") %>%
+  arrange(Provider.CCN)
+``` 
+
+
+```{r echo=FALSE, results='asis'}
+for (i in 1:20)
+{
+  cat("\\newpage")
+  
+  cat(paste("\n | Variable Name |", "Value", "| \n"))
+  cat(paste("| --- |", "---", "| \n"))
+  cat(paste("| Provider.CCN |", hospitals_ma$Provider.CCN[i], "| \n"))
+  cat(paste("| Hospital Name |", hospitals_ma$Hospital.Name[i], "| \n"))
+  cat(paste("| City |", hospitals_ma$City[i], "| \n"))
+  cat(paste("| State.Code |", hospitals_ma$State.Code[i], "| \n"))
+  cat(paste("| Fiscal.Year.End.Date |", hospitals_ma$Fiscal.Year.End.Date[i], "| \n"))
+  cat(paste("| CCN.Facility.Type |", hospitals_ma$CCN.Facility.Type[i], "| \n"))
+  cat(paste("| Rural.Versus.Urban |", hospitals_ma$Rural.Versus.Urban[i], "| \n"))
+  cat(paste("| Number.of.Beds |", hospitals_ma$Number.of.Beds[i], "| \n"))
+}
+  
+```
+
+```{r echo=FALSE, results='asis'}
+for (i in 1:60)
+{
+  cat("\\newpage")
+  
+  cat(paste("\n | Variable Name |", "Value", "| \n"))
+  cat(paste("| --- |", "---", "| \n"))
+  cat(paste("| Provider.CCN |", hospitals_al$Provider.CCN[i], "| \n"))
+  cat(paste("| Hospital Name |", hospitals_al$Hospital.Name[i], "| \n"))
+  cat(paste("| City |", hospitals_al$City[i], "| \n"))
+  cat(paste("| State.Code |", hospitals_al$State.Code[i], "| \n"))
+  cat(paste("| Fiscal.Year.End.Date |", hospitals_al$Fiscal.Year.End.Date[i], "| \n"))
+  cat(paste("| CCN.Facility.Type |", hospitals_al$CCN.Facility.Type[i], "| \n"))
+  cat(paste("| Rural.Versus.Urban |", hospitals_al$Rural.Versus.Urban[i], "| \n"))
+  cat(paste("| Number.of.Beds |", hospitals_al$Number.of.Beds[i], "| \n"))
+}
+  
+```
+

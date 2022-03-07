@@ -1,0 +1,1219 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Lindsay Poirier" />
+
+
+<title>Hospital Tables</title>
+
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<link rel="stylesheet" href="css/custom.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">SDS 192: Intro to Data Science</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Syllabus</a>
+</li>
+<li>
+  <a href="grading_contract.html">Standards Grading</a>
+</li>
+<li>
+  <a href="schedule.html">Schedule</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/SDS-192-Intro/">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Hospital Tables</h1>
+<h4 class="author">Lindsay Poirier</h4>
+<h4 class="date">3/1/2022</h4>
+
+</div>
+
+
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>hospitals_ma <span class="ot">&lt;-</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  hospitals <span class="sc">%&gt;%</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Provider.CCN, Hospital.Name, City, State.Code, Fiscal.Year.End.Date, CCN.Facility.Type, Rural.Versus.Urban, Number.of.Beds) <span class="sc">%&gt;%</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(State.Code <span class="sc">==</span> <span class="st">&quot;MA&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(hospitals_ma))</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;Provider.CCN:&quot;</span>, hospitals<span class="sc">$</span>Provider.CCN[i]))</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;Hospital Name:&quot;</span>, hospitals<span class="sc">$</span>Hospital.Name[i]))</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;City:&quot;</span>, hospitals<span class="sc">$</span>City[i]))</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;Fiscal.Year.End.Date:&quot;</span>, hospitals<span class="sc">$</span>Fiscal.Year.End.Date[i]))</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;CCN.Facility.Type:&quot;</span>, hospitals<span class="sc">$</span>CCN.Facility.Type[i]))</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;Rural.Versus.Urban:&quot;</span>, hospitals<span class="sc">$</span>Rural.Versus.Urban[i]))</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;Number.of.Beds:&quot;</span>, hospitals<span class="sc">$</span>Number.of.Beds[i]))</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">newpage&quot;</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## [1] &quot;Provider.CCN: 10032&quot;
+## [1] &quot;Hospital Name: WEDOWEE HOSPITAL&quot;
+## [1] &quot;City: WEDOWEE&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2017-11-12&quot;
+## [1] &quot;CCN.Facility.Type: STH&quot;
+## [1] &quot;Rural.Versus.Urban: R&quot;
+## [1] &quot;Number.of.Beds: 34&quot;
+## \newpage[1] &quot;Provider.CCN: 250042&quot;
+## [1] &quot;Hospital Name: NORTHWEST MS MEDICAL CENTER&quot;
+## [1] &quot;City: CLARKSDALE&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2017-12-30&quot;
+## [1] &quot;CCN.Facility.Type: STH&quot;
+## [1] &quot;Rural.Versus.Urban: R&quot;
+## [1] &quot;Number.of.Beds: 181&quot;
+## \newpage[1] &quot;Provider.CCN: 440235&quot;
+## [1] &quot;Hospital Name: BIG SOUTH FORK MEDICAL CENTER&quot;
+## [1] &quot;City: ONEIDA&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2017-12-30&quot;
+## [1] &quot;CCN.Facility.Type: STH&quot;
+## [1] &quot;Rural.Versus.Urban: R&quot;
+## [1] &quot;Number.of.Beds: 25&quot;
+## \newpage[1] &quot;Provider.CCN: 50523&quot;
+## [1] &quot;Hospital Name: SUTTER DELTA MEDICAL CENTER&quot;
+## [1] &quot;City: ANTIOCH&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-02-27&quot;
+## [1] &quot;CCN.Facility.Type: STH&quot;
+## [1] &quot;Rural.Versus.Urban: U&quot;
+## [1] &quot;Number.of.Beds: 145&quot;
+## \newpage[1] &quot;Provider.CCN: 50305&quot;
+## [1] &quot;Hospital Name: ALTA BATES MEDICAL CENTER&quot;
+## [1] &quot;City: BERKELEY&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-02-27&quot;
+## [1] &quot;CCN.Facility.Type: STH&quot;
+## [1] &quot;Rural.Versus.Urban: U&quot;
+## [1] &quot;Number.of.Beds: 337&quot;
+## \newpage[1] &quot;Provider.CCN: 50043&quot;
+## [1] &quot;Hospital Name: SUMMIT MEDICAL CENTER&quot;
+## [1] &quot;City: OAKLAND&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-02-27&quot;
+## [1] &quot;CCN.Facility.Type: STH&quot;
+## [1] &quot;Rural.Versus.Urban: U&quot;
+## [1] &quot;Number.of.Beds: 296&quot;
+## \newpage[1] &quot;Provider.CCN: 340060&quot;
+## [1] &quot;Hospital Name: MOREHEAD MEMORIAL HOSPITAL&quot;
+## [1] &quot;City: EDEN&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2017-12-30&quot;
+## [1] &quot;CCN.Facility.Type: STH&quot;
+## [1] &quot;Rural.Versus.Urban: U&quot;
+## [1] &quot;Number.of.Beds: 108&quot;
+## \newpage[1] &quot;Provider.CCN: 450083&quot;
+## [1] &quot;Hospital Name: ETMC- TYLER&quot;
+## [1] &quot;City: TYLER&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-02-27&quot;
+## [1] &quot;CCN.Facility.Type: STH&quot;
+## [1] &quot;Rural.Versus.Urban: U&quot;
+## [1] &quot;Number.of.Beds: 399&quot;
+## \newpage[1] &quot;Provider.CCN: 450194&quot;
+## [1] &quot;Hospital Name: ETMC JACKSONVILLE&quot;
+## [1] &quot;City: JACKSONVILLE&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-02-27&quot;
+## [1] &quot;CCN.Facility.Type: STH&quot;
+## [1] &quot;Rural.Versus.Urban: R&quot;
+## [1] &quot;Number.of.Beds: 32&quot;
+## \newpage[1] &quot;Provider.CCN: 450475&quot;
+## [1] &quot;Hospital Name: ETMC HENDERSON&quot;
+## [1] &quot;City: HENDERSON&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-02-27&quot;
+## [1] &quot;CCN.Facility.Type: STH&quot;
+## [1] &quot;Rural.Versus.Urban: U&quot;
+## [1] &quot;Number.of.Beds: 41&quot;
+## \newpage[1] &quot;Provider.CCN: 10126&quot;
+## [1] &quot;Hospital Name: TROY REGIONAL MEDICAL CENTER&quot;
+## [1] &quot;City: TROY&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-03-30&quot;
+## [1] &quot;CCN.Facility.Type: STH&quot;
+## [1] &quot;Rural.Versus.Urban: R&quot;
+## [1] &quot;Number.of.Beds: 97&quot;
+## \newpage[1] &quot;Provider.CCN: 370093&quot;
+## [1] &quot;Hospital Name: OU MEDICAL CENTER&quot;
+## [1] &quot;City: OKLAHOMA CITY&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-06-29&quot;
+## [1] &quot;CCN.Facility.Type: STH&quot;
+## [1] &quot;Rural.Versus.Urban: U&quot;
+## [1] &quot;Number.of.Beds: 699&quot;
+## \newpage[1] &quot;Provider.CCN: 251302&quot;
+## [1] &quot;Hospital Name: MONROE REGIONAL HOSPITAL&quot;
+## [1] &quot;City: ABERDEEN&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2017-12-30&quot;
+## [1] &quot;CCN.Facility.Type: CAH&quot;
+## [1] &quot;Rural.Versus.Urban: R&quot;
+## [1] &quot;Number.of.Beds: 25&quot;
+## \newpage[1] &quot;Provider.CCN: 440072&quot;
+## [1] &quot;Hospital Name: DYERSBURG REGIONAL MEDICAL CENTER&quot;
+## [1] &quot;City: DYERSBURG&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-05-30&quot;
+## [1] &quot;CCN.Facility.Type: STH&quot;
+## [1] &quot;Rural.Versus.Urban: R&quot;
+## [1] &quot;Number.of.Beds: 95&quot;
+## \newpage[1] &quot;Provider.CCN: 10069&quot;
+## [1] &quot;Hospital Name: SEAR&quot;
+## [1] &quot;City: EUFAULA&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2017-11-29&quot;
+## [1] &quot;CCN.Facility.Type: STH&quot;
+## [1] &quot;Rural.Versus.Urban: R&quot;
+## [1] &quot;Number.of.Beds: 30&quot;
+## \newpage[1] &quot;Provider.CCN: 340027&quot;
+## [1] &quot;Hospital Name: LENOIR MEMORIAL HOSPITAL&quot;
+## [1] &quot;City: KINSTON&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-06-29&quot;
+## [1] &quot;CCN.Facility.Type: STH&quot;
+## [1] &quot;Rural.Versus.Urban: R&quot;
+## [1] &quot;Number.of.Beds: 150&quot;
+## \newpage[1] &quot;Provider.CCN: 10022&quot;
+## [1] &quot;Hospital Name: CHEROKEE MEDICAL CENTER&quot;
+## [1] &quot;City: CENTRE&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-05-30&quot;
+## [1] &quot;CCN.Facility.Type: STH&quot;
+## [1] &quot;Rural.Versus.Urban: R&quot;
+## [1] &quot;Number.of.Beds: 45&quot;
+## \newpage[1] &quot;Provider.CCN: 440083&quot;
+## [1] &quot;Hospital Name: JAMESTOWN REGIONAL MEDICAL CENTER&quot;
+## [1] &quot;City: JAMESTOWN&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-05-30&quot;
+## [1] &quot;CCN.Facility.Type: STH&quot;
+## [1] &quot;Rural.Versus.Urban: R&quot;
+## [1] &quot;Number.of.Beds: 54&quot;
+## \newpage[1] &quot;Provider.CCN: 260176&quot;
+## [1] &quot;Hospital Name: ST. LUKES DES PERES HOSPITAL&quot;
+## [1] &quot;City: ST. LOUIS&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-06-29&quot;
+## [1] &quot;CCN.Facility.Type: STH&quot;
+## [1] &quot;Rural.Versus.Urban: U&quot;
+## [1] &quot;Number.of.Beds: 88&quot;
+## \newpage[1] &quot;Provider.CCN: 340060&quot;
+## [1] &quot;Hospital Name: UNC ROCKINGHAM HOSPITAL&quot;
+## [1] &quot;City: EDEN&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-06-29&quot;
+## [1] &quot;CCN.Facility.Type: STH&quot;
+## [1] &quot;Rural.Versus.Urban: U&quot;
+## [1] &quot;Number.of.Beds: 108&quot;
+## \newpage[1] &quot;Provider.CCN: 60130&quot;
+## [1] &quot;Hospital Name: UCHEALTH COLORADO SPRINGS HOSPITAL&quot;
+## [1] &quot;City: COLORADO SPRINGS&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-06-29&quot;
+## [1] &quot;CCN.Facility.Type: STH&quot;
+## [1] &quot;Rural.Versus.Urban: U&quot;
+## [1] &quot;Number.of.Beds: 22&quot;
+## \newpage[1] &quot;Provider.CCN: 673058&quot;
+## [1] &quot;Hospital Name: VIBRA HOSPITAL OF LAKE TRAVIS&quot;
+## [1] &quot;City: LAKEWAY&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-06-24&quot;
+## [1] &quot;CCN.Facility.Type: RH&quot;
+## [1] &quot;Rural.Versus.Urban: U&quot;
+## [1] &quot;Number.of.Beds: 36&quot;
+## \newpage[1] &quot;Provider.CCN: 110046&quot;
+## [1] &quot;Hospital Name: PIEDMONT WALTON HOSPITAL&quot;
+## [1] &quot;City: MONROE&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-06-29&quot;
+## [1] &quot;CCN.Facility.Type: STH&quot;
+## [1] &quot;Rural.Versus.Urban: U&quot;
+## [1] &quot;Number.of.Beds: 76&quot;
+## \newpage[1] &quot;Provider.CCN: 340064&quot;
+## [1] &quot;Hospital Name: WRMC HOSPITAL OPERATING CORPORATION&quot;
+## [1] &quot;City: NORTH WILKESBORO&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-06-29&quot;
+## [1] &quot;CCN.Facility.Type: STH&quot;
+## [1] &quot;Rural.Versus.Urban: R&quot;
+## [1] &quot;Number.of.Beds: 93&quot;
+## \newpage[1] &quot;Provider.CCN: 390162&quot;
+## [1] &quot;Hospital Name: EASTON HOSPITAL&quot;
+## [1] &quot;City: EASTON&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-06-29&quot;
+## [1] &quot;CCN.Facility.Type: STH&quot;
+## [1] &quot;Rural.Versus.Urban: U&quot;
+## [1] &quot;Number.of.Beds: 170&quot;
+## \newpage[1] &quot;Provider.CCN: 390220&quot;
+## [1] &quot;Hospital Name: JENNERSVILLE REGIONAL HOSPITAL&quot;
+## [1] &quot;City: WEST GROVE&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-06-29&quot;
+## [1] &quot;CCN.Facility.Type: STH&quot;
+## [1] &quot;Rural.Versus.Urban: U&quot;
+## [1] &quot;Number.of.Beds: 53&quot;
+## \newpage[1] &quot;Provider.CCN: 51994&quot;
+## [1] &quot;Hospital Name: FERN LODGE INC&quot;
+## [1] &quot;City: CASTRO VALLEY&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-06-30&quot;
+## [1] &quot;CCN.Facility.Type: RNMHC&quot;
+## [1] &quot;Rural.Versus.Urban: NA&quot;
+## [1] &quot;Number.of.Beds: NA&quot;
+## \newpage[1] &quot;Provider.CCN: 170016&quot;
+## [1] &quot;Hospital Name: ST.FRANCIS HEALTH CENTER&quot;
+## [1] &quot;City: TOPEKA&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-06-29&quot;
+## [1] &quot;CCN.Facility.Type: STH&quot;
+## [1] &quot;Rural.Versus.Urban: U&quot;
+## [1] &quot;Number.of.Beds: 224&quot;
+## \newpage[1] &quot;Provider.CCN: 170110&quot;
+## [1] &quot;Hospital Name: BOB WILSON MEMORIAL GRANT COUNTY HOS&quot;
+## [1] &quot;City: ULYSSES&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-06-29&quot;
+## [1] &quot;CCN.Facility.Type: STH&quot;
+## [1] &quot;Rural.Versus.Urban: R&quot;
+## [1] &quot;Number.of.Beds: 26&quot;
+## \newpage[1] &quot;Provider.CCN: 230133&quot;
+## [1] &quot;Hospital Name: OTSEGO MEMORIAL HOSPITAL&quot;
+## [1] &quot;City: GAYLORD&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-06-29&quot;
+## [1] &quot;CCN.Facility.Type: STH&quot;
+## [1] &quot;Rural.Versus.Urban: R&quot;
+## [1] &quot;Number.of.Beds: 46&quot;
+## \newpage[1] &quot;Provider.CCN: 390026&quot;
+## [1] &quot;Hospital Name: CHESTNUT HILL HOSPITAL&quot;
+## [1] &quot;City: PHILADELPHIA&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-06-29&quot;
+## [1] &quot;CCN.Facility.Type: STH&quot;
+## [1] &quot;Rural.Versus.Urban: U&quot;
+## [1] &quot;Number.of.Beds: 128&quot;
+## \newpage[1] &quot;Provider.CCN: 110236&quot;
+## [1] &quot;Hospital Name: CHI MEMORIAL HOSPITAL - GEORGIA&quot;
+## [1] &quot;City: FT OGLETHORPE&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-06-29&quot;
+## [1] &quot;CCN.Facility.Type: STH&quot;
+## [1] &quot;Rural.Versus.Urban: U&quot;
+## [1] &quot;Number.of.Beds: 16&quot;
+## \newpage[1] &quot;Provider.CCN: 140054&quot;
+## [1] &quot;Hospital Name: MACNEAL HOSPITAL&quot;
+## [1] &quot;City: BERWYN&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-06-29&quot;
+## [1] &quot;CCN.Facility.Type: STH&quot;
+## [1] &quot;Rural.Versus.Urban: R&quot;
+## [1] &quot;Number.of.Beds: 263&quot;
+## \newpage[1] &quot;Provider.CCN: 453072&quot;
+## [1] &quot;Hospital Name: ETMC REHABILITATION&quot;
+## [1] &quot;City: TYLER&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-07-30&quot;
+## [1] &quot;CCN.Facility.Type: RH&quot;
+## [1] &quot;Rural.Versus.Urban: U&quot;
+## [1] &quot;Number.of.Beds: 49&quot;
+## \newpage[1] &quot;Provider.CCN: 530025&quot;
+## [1] &quot;Hospital Name: IVINSON MEMORIAL HOSPITAL&quot;
+## [1] &quot;City: LARAMIE&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-06-29&quot;
+## [1] &quot;CCN.Facility.Type: STH&quot;
+## [1] &quot;Rural.Versus.Urban: R&quot;
+## [1] &quot;Number.of.Beds: 66&quot;
+## \newpage[1] &quot;Provider.CCN: 240088&quot;
+## [1] &quot;Hospital Name: CARRIS HEALTH&quot;
+## [1] &quot;City: WILLMAR&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-06-29&quot;
+## [1] &quot;CCN.Facility.Type: STH&quot;
+## [1] &quot;Rural.Versus.Urban: R&quot;
+## [1] &quot;Number.of.Beds: 81&quot;
+## \newpage[1] &quot;Provider.CCN: 441314&quot;
+## [1] &quot;Hospital Name: CAH ACQUISITION COMPANY #11 LLC&quot;
+## [1] &quot;City: RIPLEY&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-09-29&quot;
+## [1] &quot;CCN.Facility.Type: CAH&quot;
+## [1] &quot;Rural.Versus.Urban: R&quot;
+## [1] &quot;Number.of.Beds: 25&quot;
+## \newpage[1] &quot;Provider.CCN: 673065&quot;
+## [1] &quot;Hospital Name: CHI ST. JOSEPH HEALTH REHABILITATION&quot;
+## [1] &quot;City: BRYAN&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-09-29&quot;
+## [1] &quot;CCN.Facility.Type: RH&quot;
+## [1] &quot;Rural.Versus.Urban: U&quot;
+## [1] &quot;Number.of.Beds: 49&quot;
+## \newpage[1] &quot;Provider.CCN: 110091&quot;
+## [1] &quot;Hospital Name: PIEDMONT ROCKDALE HOSPITAL&quot;
+## [1] &quot;City: CONYERS&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-06-29&quot;
+## [1] &quot;CCN.Facility.Type: STH&quot;
+## [1] &quot;Rural.Versus.Urban: U&quot;
+## [1] &quot;Number.of.Beds: 141&quot;
+## \newpage[1] &quot;Provider.CCN: 41323&quot;
+## [1] &quot;Hospital Name: ASHLEY COUNTY MEDICAL CENTER&quot;
+## [1] &quot;City: CROSSETT&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-09-29&quot;
+## [1] &quot;CCN.Facility.Type: CAH&quot;
+## [1] &quot;Rural.Versus.Urban: R&quot;
+## [1] &quot;Number.of.Beds: 25&quot;
+## \newpage[1] &quot;Provider.CCN: 673050&quot;
+## [1] &quot;Hospital Name: ENCOMPASS HEALTH REHABILITATION HOSP&quot;
+## [1] &quot;City: HOUSTON&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-09-29&quot;
+## [1] &quot;CCN.Facility.Type: RH&quot;
+## [1] &quot;Rural.Versus.Urban: U&quot;
+## [1] &quot;Number.of.Beds: 60&quot;
+## \newpage[1] &quot;Provider.CCN: 673066&quot;
+## [1] &quot;Hospital Name: ENCOMPASS HEALTH REHABILITATION HOSP&quot;
+## [1] &quot;City: PEARLAND&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-09-29&quot;
+## [1] &quot;CCN.Facility.Type: RH&quot;
+## [1] &quot;Rural.Versus.Urban: U&quot;
+## [1] &quot;Number.of.Beds: 40&quot;
+## \newpage[1] &quot;Provider.CCN: 131315&quot;
+## [1] &quot;Hospital Name: SYRINGA GENERAL HOSPITAL&quot;
+## [1] &quot;City: GRANGEVILLE&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-09-29&quot;
+## [1] &quot;CCN.Facility.Type: CAH&quot;
+## [1] &quot;Rural.Versus.Urban: R&quot;
+## [1] &quot;Number.of.Beds: 15&quot;
+## \newpage[1] &quot;Provider.CCN: 501337&quot;
+## [1] &quot;Hospital Name: LOURDES MEDICAL CENTER&quot;
+## [1] &quot;City: PASCO&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-08-30&quot;
+## [1] &quot;CCN.Facility.Type: CAH&quot;
+## [1] &quot;Rural.Versus.Urban: R&quot;
+## [1] &quot;Number.of.Beds: 25&quot;
+## \newpage[1] &quot;Provider.CCN: 190164&quot;
+## [1] &quot;Hospital Name: BYRD REGIONAL HOSPITAL&quot;
+## [1] &quot;City: LEESVILLE&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-07-30&quot;
+## [1] &quot;CCN.Facility.Type: STH&quot;
+## [1] &quot;Rural.Versus.Urban: R&quot;
+## [1] &quot;Number.of.Beds: 52&quot;
+## \newpage[1] &quot;Provider.CCN: 281339&quot;
+## [1] &quot;Hospital Name: MEMORIAL HEALTH CARE SYSTEMS&quot;
+## [1] &quot;City: SEWARD&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-09-29&quot;
+## [1] &quot;CCN.Facility.Type: CAH&quot;
+## [1] &quot;Rural.Versus.Urban: R&quot;
+## [1] &quot;Number.of.Beds: 24&quot;
+## \newpage[1] &quot;Provider.CCN: 301301&quot;
+## [1] &quot;Hospital Name: COTTAGE HOSPITAL&quot;
+## [1] &quot;City: WOODSVILLE&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-09-29&quot;
+## [1] &quot;CCN.Facility.Type: CAH&quot;
+## [1] &quot;Rural.Versus.Urban: R&quot;
+## [1] &quot;Number.of.Beds: 25&quot;
+## \newpage[1] &quot;Provider.CCN: 241373&quot;
+## [1] &quot;Hospital Name: PERHAM MEMORIAL HOSPITAL AND HOME&quot;
+## [1] &quot;City: PERHAM&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-09-29&quot;
+## [1] &quot;CCN.Facility.Type: CAH&quot;
+## [1] &quot;Rural.Versus.Urban: R&quot;
+## [1] &quot;Number.of.Beds: 25&quot;
+## \newpage[1] &quot;Provider.CCN: 451300&quot;
+## [1] &quot;Hospital Name: PARMER COUNTY COMMUNITY HOSPITAL&quot;
+## [1] &quot;City: FRIONA&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-09-29&quot;
+## [1] &quot;CCN.Facility.Type: CAH&quot;
+## [1] &quot;Rural.Versus.Urban: R&quot;
+## [1] &quot;Number.of.Beds: 25&quot;
+## \newpage[1] &quot;Provider.CCN: 451343&quot;
+## [1] &quot;Hospital Name: ELECTRA MEMORIAL HOSPITAL&quot;
+## [1] &quot;City: ELECTRA&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-09-29&quot;
+## [1] &quot;CCN.Facility.Type: CAH&quot;
+## [1] &quot;Rural.Versus.Urban: R&quot;
+## [1] &quot;Number.of.Beds: 19&quot;
+## \newpage[1] &quot;Provider.CCN: 451344&quot;
+## [1] &quot;Hospital Name: HANSFORD COUNTY HOSPITAL DISTRICT&quot;
+## [1] &quot;City: SPEARMAN&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-09-29&quot;
+## [1] &quot;CCN.Facility.Type: CAH&quot;
+## [1] &quot;Rural.Versus.Urban: R&quot;
+## [1] &quot;Number.of.Beds: 14&quot;
+## \newpage[1] &quot;Provider.CCN: 670045&quot;
+## [1] &quot;Hospital Name: COOK CHILDRENS NORTHEAST HOSPITAL&quot;
+## [1] &quot;City: HURST&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-10-24&quot;
+## [1] &quot;CCN.Facility.Type: STH&quot;
+## [1] &quot;Rural.Versus.Urban: U&quot;
+## [1] &quot;Number.of.Beds: 3&quot;
+## \newpage[1] &quot;Provider.CCN: 471300&quot;
+## [1] &quot;Hospital Name: GRACE COTTAGE HOSPITAL&quot;
+## [1] &quot;City: TOWNSHEND&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-09-29&quot;
+## [1] &quot;CCN.Facility.Type: CAH&quot;
+## [1] &quot;Rural.Versus.Urban: R&quot;
+## [1] &quot;Number.of.Beds: 19&quot;
+## \newpage[1] &quot;Provider.CCN: 471301&quot;
+## [1] &quot;Hospital Name: GIFFORD MEDICAL CENTER&quot;
+## [1] &quot;City: RANDOLPH&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-09-29&quot;
+## [1] &quot;CCN.Facility.Type: CAH&quot;
+## [1] &quot;Rural.Versus.Urban: R&quot;
+## [1] &quot;Number.of.Beds: 29&quot;
+## \newpage[1] &quot;Provider.CCN: 141339&quot;
+## [1] &quot;Hospital Name: TAYLORVILLE MEMORIAL HOSPITAL&quot;
+## [1] &quot;City: TAYLORVILLE&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-09-29&quot;
+## [1] &quot;CCN.Facility.Type: CAH&quot;
+## [1] &quot;Rural.Versus.Urban: R&quot;
+## [1] &quot;Number.of.Beds: 25&quot;
+## \newpage[1] &quot;Provider.CCN: 181315&quot;
+## [1] &quot;Hospital Name: FORT LOGAN HOSPITAL&quot;
+## [1] &quot;City: STANFORD&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-09-29&quot;
+## [1] &quot;CCN.Facility.Type: CAH&quot;
+## [1] &quot;Rural.Versus.Urban: R&quot;
+## [1] &quot;Number.of.Beds: 25&quot;
+## \newpage[1] &quot;Provider.CCN: 371316&quot;
+## [1] &quot;Hospital Name: STROUD REGIONAL MEDICAL CENTER&quot;
+## [1] &quot;City: STROUD&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-09-29&quot;
+## [1] &quot;CCN.Facility.Type: CAH&quot;
+## [1] &quot;Rural.Versus.Urban: R&quot;
+## [1] &quot;Number.of.Beds: 25&quot;
+## \newpage[1] &quot;Provider.CCN: 673038&quot;
+## [1] &quot;Hospital Name: MEMORIAL HERMANN REHAB HOSP KATY&quot;
+## [1] &quot;City: KATY&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-09-29&quot;
+## [1] &quot;CCN.Facility.Type: RH&quot;
+## [1] &quot;Rural.Versus.Urban: U&quot;
+## [1] &quot;Number.of.Beds: 35&quot;
+## \newpage[1] &quot;Provider.CCN: 251313&quot;
+## [1] &quot;Hospital Name: BAPTIST MEDICAL CENTER - YAZOO&quot;
+## [1] &quot;City: YAZOO CITY&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-09-29&quot;
+## [1] &quot;CCN.Facility.Type: CAH&quot;
+## [1] &quot;Rural.Versus.Urban: R&quot;
+## [1] &quot;Number.of.Beds: 25&quot;
+## \newpage[1] &quot;Provider.CCN: 251334&quot;
+## [1] &quot;Hospital Name: CHOCTAW REGIONAL MEDICAL CENTER&quot;
+## [1] &quot;City: ACKERMAN&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-09-29&quot;
+## [1] &quot;CCN.Facility.Type: CAH&quot;
+## [1] &quot;Rural.Versus.Urban: R&quot;
+## [1] &quot;Number.of.Beds: 15&quot;
+## \newpage[1] &quot;Provider.CCN: 301310&quot;
+## [1] &quot;Hospital Name: ANDROSCOGGIN VALLEY HOSPITAL&quot;
+## [1] &quot;City: BERLIN&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-09-29&quot;
+## [1] &quot;CCN.Facility.Type: CAH&quot;
+## [1] &quot;Rural.Versus.Urban: R&quot;
+## [1] &quot;Number.of.Beds: 25&quot;
+## \newpage[1] &quot;Provider.CCN: 371312&quot;
+## [1] &quot;Hospital Name: ST JOHN SAPULPA&quot;
+## [1] &quot;City: SAPULPA&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-09-29&quot;
+## [1] &quot;CCN.Facility.Type: CAH&quot;
+## [1] &quot;Rural.Versus.Urban: U&quot;
+## [1] &quot;Number.of.Beds: 25&quot;
+## \newpage[1] &quot;Provider.CCN: 450746&quot;
+## [1] &quot;Hospital Name: KNOX COUNTY HOSPITAL&quot;
+## [1] &quot;City: KNOX CITY&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-09-29&quot;
+## [1] &quot;CCN.Facility.Type: STH&quot;
+## [1] &quot;Rural.Versus.Urban: R&quot;
+## [1] &quot;Number.of.Beds: 28&quot;
+## \newpage[1] &quot;Provider.CCN: 451314&quot;
+## [1] &quot;Hospital Name: MEMORIAL HOSPITAL&quot;
+## [1] &quot;City: KERMIT&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-09-29&quot;
+## [1] &quot;CCN.Facility.Type: CAH&quot;
+## [1] &quot;Rural.Versus.Urban: R&quot;
+## [1] &quot;Number.of.Beds: 19&quot;
+## \newpage[1] &quot;Provider.CCN: 380005&quot;
+## [1] &quot;Hospital Name: ASHLAND COMMUNITY HOSPITAL&quot;
+## [1] &quot;City: ASHLAND&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-09-29&quot;
+## [1] &quot;CCN.Facility.Type: STH&quot;
+## [1] &quot;Rural.Versus.Urban: U&quot;
+## [1] &quot;Number.of.Beds: 38&quot;
+## \newpage[1] &quot;Provider.CCN: 650001&quot;
+## [1] &quot;Hospital Name: GUAM MEMORIAL HOSPITAL&quot;
+## [1] &quot;City: OKA  TAMUNING&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-09-29&quot;
+## [1] &quot;CCN.Facility.Type: STH&quot;
+## [1] &quot;Rural.Versus.Urban: R&quot;
+## [1] &quot;Number.of.Beds: 161&quot;
+## \newpage[1] &quot;Provider.CCN: 11302&quot;
+## [1] &quot;Hospital Name: RED BAY HOSPITAL&quot;
+## [1] &quot;City: RED BAY&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-09-29&quot;
+## [1] &quot;CCN.Facility.Type: CAH&quot;
+## [1] &quot;Rural.Versus.Urban: R&quot;
+## [1] &quot;Number.of.Beds: 25&quot;
+## \newpage[1] &quot;Provider.CCN: 111333&quot;
+## [1] &quot;Hospital Name: JEFF DAVIS&quot;
+## [1] &quot;City: HAZLEHURST&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-09-29&quot;
+## [1] &quot;CCN.Facility.Type: CAH&quot;
+## [1] &quot;Rural.Versus.Urban: R&quot;
+## [1] &quot;Number.of.Beds: 25&quot;
+## \newpage[1] &quot;Provider.CCN: 241320&quot;
+## [1] &quot;Hospital Name: RIVERVIEW HEALTHCARE ASSOCIATION&quot;
+## [1] &quot;City: CROOKSTON&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-09-29&quot;
+## [1] &quot;CCN.Facility.Type: CAH&quot;
+## [1] &quot;Rural.Versus.Urban: R&quot;
+## [1] &quot;Number.of.Beds: 30&quot;
+## \newpage[1] &quot;Provider.CCN: 301302&quot;
+## [1] &quot;Hospital Name: LITTLETON REGIONAL HEALTHCARE&quot;
+## [1] &quot;City: LITTLETON&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-09-29&quot;
+## [1] &quot;CCN.Facility.Type: CAH&quot;
+## [1] &quot;Rural.Versus.Urban: R&quot;
+## [1] &quot;Number.of.Beds: 25&quot;
+## \newpage[1] &quot;Provider.CCN: 301306&quot;
+## [1] &quot;Hospital Name: FRANKLIN REGIONAL HOSPITAL&quot;
+## [1] &quot;City: FRANKLIN&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-09-29&quot;
+## [1] &quot;CCN.Facility.Type: CAH&quot;
+## [1] &quot;Rural.Versus.Urban: R&quot;
+## [1] &quot;Number.of.Beds: 25&quot;
+## \newpage[1] &quot;Provider.CCN: 341304&quot;
+## [1] &quot;Hospital Name: BERTIE MEMORIAL HOSPITAL&quot;
+## [1] &quot;City: WINDSOR&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-09-29&quot;
+## [1] &quot;CCN.Facility.Type: CAH&quot;
+## [1] &quot;Rural.Versus.Urban: R&quot;
+## [1] &quot;Number.of.Beds: 6&quot;
+## \newpage[1] &quot;Provider.CCN: 341318&quot;
+## [1] &quot;Hospital Name: CHOWAN HOSPITAL INC.&quot;
+## [1] &quot;City: EDENTON&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-09-29&quot;
+## [1] &quot;CCN.Facility.Type: CAH&quot;
+## [1] &quot;Rural.Versus.Urban: R&quot;
+## [1] &quot;Number.of.Beds: 25&quot;
+## \newpage[1] &quot;Provider.CCN: 341324&quot;
+## [1] &quot;Hospital Name: THE OUTER BANKS HOSPITAL&quot;
+## [1] &quot;City: NAGS HEAD&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-09-29&quot;
+## [1] &quot;CCN.Facility.Type: CAH&quot;
+## [1] &quot;Rural.Versus.Urban: U&quot;
+## [1] &quot;Number.of.Beds: 21&quot;
+## \newpage[1] &quot;Provider.CCN: 414000&quot;
+## [1] &quot;Hospital Name: BUTLER HOSPITAL&quot;
+## [1] &quot;City: PROVIDENCE&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-09-29&quot;
+## [1] &quot;CCN.Facility.Type: PH&quot;
+## [1] &quot;Rural.Versus.Urban: U&quot;
+## [1] &quot;Number.of.Beds: 143&quot;
+## \newpage[1] &quot;Provider.CCN: 11300&quot;
+## [1] &quot;Hospital Name: WASHINGTON COUNTY HOSPITAL&quot;
+## [1] &quot;City: CHATOM&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-09-29&quot;
+## [1] &quot;CCN.Facility.Type: CAH&quot;
+## [1] &quot;Rural.Versus.Urban: R&quot;
+## [1] &quot;Number.of.Beds: 15&quot;
+## \newpage[1] &quot;Provider.CCN: 41327&quot;
+## [1] &quot;Hospital Name: BRADLEY COUNTY MEDICAL CENTER&quot;
+## [1] &quot;City: WARREN&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-09-29&quot;
+## [1] &quot;CCN.Facility.Type: CAH&quot;
+## [1] &quot;Rural.Versus.Urban: R&quot;
+## [1] &quot;Number.of.Beds: 25&quot;
+## \newpage[1] &quot;Provider.CCN: 102012&quot;
+## [1] &quot;Hospital Name: SPECIALTY HOSPITAL OF JACKSONVILLE&quot;
+## [1] &quot;City: JACKSONVILLE&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-03-30&quot;
+## [1] &quot;CCN.Facility.Type: LTCH&quot;
+## [1] &quot;Rural.Versus.Urban: U&quot;
+## [1] &quot;Number.of.Beds: 107&quot;
+## \newpage[1] &quot;Provider.CCN: 103026&quot;
+## [1] &quot;Hospital Name: ST CATHERINES REHAB HOSPITAL&quot;
+## [1] &quot;City: NORTH MIAMI&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-09-29&quot;
+## [1] &quot;CCN.Facility.Type: RH&quot;
+## [1] &quot;Rural.Versus.Urban: U&quot;
+## [1] &quot;Number.of.Beds: 60&quot;
+## \newpage[1] &quot;Provider.CCN: 103027&quot;
+## [1] &quot;Hospital Name: ST JOHNS REHABILITATION HOSPITAL&quot;
+## [1] &quot;City: LAUDERDALE LAKES&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-09-29&quot;
+## [1] &quot;CCN.Facility.Type: RH&quot;
+## [1] &quot;Rural.Versus.Urban: U&quot;
+## [1] &quot;Number.of.Beds: 26&quot;
+## \newpage[1] &quot;Provider.CCN: 191318&quot;
+## [1] &quot;Hospital Name: RIVERLAND MEDICAL CENTER&quot;
+## [1] &quot;City: FERRIDAY&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-09-29&quot;
+## [1] &quot;CCN.Facility.Type: CAH&quot;
+## [1] &quot;Rural.Versus.Urban: R&quot;
+## [1] &quot;Number.of.Beds: 25&quot;
+## \newpage[1] &quot;Provider.CCN: 221300&quot;
+## [1] &quot;Hospital Name: MARTHAS VINEYARD HOSPITAL&quot;
+## [1] &quot;City: OAK BLUFFS&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-09-29&quot;
+## [1] &quot;CCN.Facility.Type: CAH&quot;
+## [1] &quot;Rural.Versus.Urban: R&quot;
+## [1] &quot;Number.of.Beds: 25&quot;
+## \newpage[1] &quot;Provider.CCN: 221303&quot;
+## [1] &quot;Hospital Name: ATHOL MEMORIAL HOSPITAL&quot;
+## [1] &quot;City: ATHOL&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-09-29&quot;
+## [1] &quot;CCN.Facility.Type: CAH&quot;
+## [1] &quot;Rural.Versus.Urban: U&quot;
+## [1] &quot;Number.of.Beds: 25&quot;
+## \newpage[1] &quot;Provider.CCN: 241376&quot;
+## [1] &quot;Hospital Name: GLACIAL RIDGE HOSPITAL&quot;
+## [1] &quot;City: GLENWOOD&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-09-29&quot;
+## [1] &quot;CCN.Facility.Type: CAH&quot;
+## [1] &quot;Rural.Versus.Urban: R&quot;
+## [1] &quot;Number.of.Beds: 19&quot;
+## \newpage[1] &quot;Provider.CCN: 251304&quot;
+## [1] &quot;Hospital Name: TALLAHATCHIE CRITICAL ACCESS HOSPITA&quot;
+## [1] &quot;City: CHARLESTON&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-09-29&quot;
+## [1] &quot;CCN.Facility.Type: CAH&quot;
+## [1] &quot;Rural.Versus.Urban: R&quot;
+## [1] &quot;Number.of.Beds: 9&quot;
+## \newpage[1] &quot;Provider.CCN: 480001&quot;
+## [1] &quot;Hospital Name: ROY L SCHNEIDER HOSPITAL&quot;
+## [1] &quot;City: ST. THOMAS&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-09-29&quot;
+## [1] &quot;CCN.Facility.Type: STH&quot;
+## [1] &quot;Rural.Versus.Urban: R&quot;
+## [1] &quot;Number.of.Beds: 107&quot;
+## \newpage[1] &quot;Provider.CCN: 480002&quot;
+## [1] &quot;Hospital Name: GOV. JUAN F. LUIS HOSPITAL&quot;
+## [1] &quot;City: CHRISTIANSTED&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-09-29&quot;
+## [1] &quot;CCN.Facility.Type: STH&quot;
+## [1] &quot;Rural.Versus.Urban: R&quot;
+## [1] &quot;Number.of.Beds: 77&quot;
+## \newpage[1] &quot;Provider.CCN: 521348&quot;
+## [1] &quot;Hospital Name: VERNON MEMORIAL HOSPITAL&quot;
+## [1] &quot;City: VIROQUA&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-09-29&quot;
+## [1] &quot;CCN.Facility.Type: CAH&quot;
+## [1] &quot;Rural.Versus.Urban: R&quot;
+## [1] &quot;Number.of.Beds: 25&quot;
+## \newpage[1] &quot;Provider.CCN: 14014&quot;
+## [1] &quot;Hospital Name: BAYPOINT BEHAVIORAL HEALTH&quot;
+## [1] &quot;City: MOBILE&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-09-29&quot;
+## [1] &quot;CCN.Facility.Type: PH&quot;
+## [1] &quot;Rural.Versus.Urban: NA&quot;
+## [1] &quot;Number.of.Beds: NA&quot;
+## \newpage[1] &quot;Provider.CCN: 131318&quot;
+## [1] &quot;Hospital Name: WALTER KNOX MEMORIAL HOSPITAL&quot;
+## [1] &quot;City: EMMETT&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-09-29&quot;
+## [1] &quot;CCN.Facility.Type: CAH&quot;
+## [1] &quot;Rural.Versus.Urban: R&quot;
+## [1] &quot;Number.of.Beds: 13&quot;
+## \newpage[1] &quot;Provider.CCN: 201302&quot;
+## [1] &quot;Hospital Name: LINCOLNHEALTH&quot;
+## [1] &quot;City: BOOTHBAY HARBOR&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-09-29&quot;
+## [1] &quot;CCN.Facility.Type: CAH&quot;
+## [1] &quot;Rural.Versus.Urban: R&quot;
+## [1] &quot;Number.of.Beds: 25&quot;
+## \newpage[1] &quot;Provider.CCN: 660001&quot;
+## [1] &quot;Hospital Name: COMMONWEALTH HEALTH CENTER&quot;
+## [1] &quot;City: SAIPAN&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-09-29&quot;
+## [1] &quot;CCN.Facility.Type: STH&quot;
+## [1] &quot;Rural.Versus.Urban: R&quot;
+## [1] &quot;Number.of.Beds: 74&quot;
+## \newpage[1] &quot;Provider.CCN: 111326&quot;
+## [1] &quot;Hospital Name: SGMC  LANIER CAMPUS&quot;
+## [1] &quot;City: LAKELAND&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-09-29&quot;
+## [1] &quot;CCN.Facility.Type: CAH&quot;
+## [1] &quot;Rural.Versus.Urban: U&quot;
+## [1] &quot;Number.of.Beds: 25&quot;
+## \newpage[1] &quot;Provider.CCN: 371314&quot;
+## [1] &quot;Hospital Name: PHYSICIANS HOSPITAL AT ANADARKO&quot;
+## [1] &quot;City: ANADARKO&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-09-29&quot;
+## [1] &quot;CCN.Facility.Type: CAH&quot;
+## [1] &quot;Rural.Versus.Urban: R&quot;
+## [1] &quot;Number.of.Beds: 25&quot;
+## \newpage[1] &quot;Provider.CCN: 111310&quot;
+## [1] &quot;Hospital Name: MEDICAL CENTER OF PEACH COUNTY&quot;
+## [1] &quot;City: BYRON&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-09-29&quot;
+## [1] &quot;CCN.Facility.Type: CAH&quot;
+## [1] &quot;Rural.Versus.Urban: U&quot;
+## [1] &quot;Number.of.Beds: 25&quot;
+## \newpage[1] &quot;Provider.CCN: 111313&quot;
+## [1] &quot;Hospital Name: PUTNAM GENERAL HOSPITAL&quot;
+## [1] &quot;City: EATONTON&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-09-29&quot;
+## [1] &quot;CCN.Facility.Type: CAH&quot;
+## [1] &quot;Rural.Versus.Urban: R&quot;
+## [1] &quot;Number.of.Beds: 25&quot;
+## \newpage[1] &quot;Provider.CCN: 113029&quot;
+## [1] &quot;Hospital Name: CENTRAL GEORGIA REHAB HOSPITAL&quot;
+## [1] &quot;City: MACON&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-09-29&quot;
+## [1] &quot;CCN.Facility.Type: RH&quot;
+## [1] &quot;Rural.Versus.Urban: U&quot;
+## [1] &quot;Number.of.Beds: 58&quot;
+## \newpage[1] &quot;Provider.CCN: 141315&quot;
+## [1] &quot;Hospital Name: BCC DBA ILLINI COMMUNITY HOSPITAL&quot;
+## [1] &quot;City: PITTSFIELD&quot;
+## [1] &quot;Fiscal.Year.End.Date: 2018-09-29&quot;
+## [1] &quot;CCN.Facility.Type: CAH&quot;
+## [1] &quot;Rural.Versus.Urban: R&quot;
+## [1] &quot;Number.of.Beds: 25&quot;
+## \newpage</code></pre>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = false;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
