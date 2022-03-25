@@ -49,9 +49,9 @@ topic_id,topic_abbr,announcement
 19,data_acquisition,First 15 minutes of office hours on Wednesday will be devoted to quiz 2 review.
 19,data_acquisition,Solutions for lab 18 will be posted by end of day. 
 20,pivoting,Class slides are [here](slides/Day22-Pivoting.html)
-21,tidying,
+21,tidying, 
 22,joining, Class slides are [here](slides/Day23-Joining.html)
-23,apis,
+23,apis, 
 24,joining_apis,
 25,functions,
 26,practicing_functions,
@@ -63,7 +63,7 @@ topic_id,topic_abbr,announcement
 32,layering,
 33,chloropleth,
 34,tbd1,
-35,tbd2,
+35,tbd2, Class slides are [here](slides/Day24-Privacy.html)
 36,recap3,
 37,final1,
 38,final2,
