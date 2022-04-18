@@ -78,7 +78,7 @@ function_name(value_for_arg1, value_for_arg2)
 
 
 ```r
-sum_x_in_df &lt;- function(data, var) {
+sum_x_in_df &lt;- function(data) {
 
   summed_df &lt;- data %&gt;%
     summarize(Total = sum(var))
@@ -92,7 +92,7 @@ sum_x_in_df &lt;- function(data, var) {
 sum_x_in_df(df1, num_votes)
 ```
 
-&gt; Both `data` and `var` are required arguments above. 
+&gt; `data` is a required argument above. 
 
 ---
 
@@ -103,7 +103,7 @@ sum_x_in_df(df1, num_votes)
 sum_x_in_df &lt;- function(data, var = num_votes) {
 
   summed_df &lt;- data %&gt;%
-    summarize(Total = sum(var))
+    summarize(Total = sum({{var}}))
   
   return(summed_df)
 }
@@ -114,7 +114,8 @@ sum_x_in_df &lt;- function(data, var = num_votes) {
 sum_x_in_df(df1)
 ```
 
-&gt; Default value provided for `var`, so it is now optional. 
+&gt; Default value provided for `var`. 
+&gt; Use `{{...}}` to pass a variable name in a function. 
 
 ---
 
@@ -125,7 +126,7 @@ sum_x_in_df(df1)
 sum_x_in_df &lt;- function(data, var = num_votes) {
 
   summed_df &lt;- data %&gt;%
-    summarize(Total = sum(var))
+    summarize(Total = sum({{var}}))
   
   return(summed_df)
 }
@@ -147,7 +148,7 @@ sum_x_in_df(df1, num_registrations)
 sum_x_in_df &lt;- function(data, var = num_votes) {
 
   summed_df &lt;- data %&gt;%
-    summarize(Total = sum(var))
+    summarize(Total = sum({{var}}))
   
   return(summed_df)
 }

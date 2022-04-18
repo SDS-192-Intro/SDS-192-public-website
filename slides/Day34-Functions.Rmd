@@ -77,7 +77,7 @@ function_name(value_for_arg1, value_for_arg2)
 # User-defined Functions
 
 ```{r eval = FALSE}
-sum_x_in_df <- function(data, var) {
+sum_x_in_df <- function(data) {
 
   summed_df <- data %>%
     summarize(Total = sum(var))
@@ -90,7 +90,7 @@ sum_x_in_df <- function(data, var) {
 sum_x_in_df(df1, num_votes)
 ```
 
-> Both `data` and `var` are required arguments above. 
+> `data` is a required argument above. 
 
 ---
 
@@ -100,7 +100,7 @@ sum_x_in_df(df1, num_votes)
 sum_x_in_df <- function(data, var = num_votes) {
 
   summed_df <- data %>%
-    summarize(Total = sum(var))
+    summarize(Total = sum({{var}}))
   
   return(summed_df)
 }
@@ -110,7 +110,8 @@ sum_x_in_df <- function(data, var = num_votes) {
 sum_x_in_df(df1)
 ```
 
-> Default value provided for `var`, so it is now optional. 
+> Default value provided for `var`. 
+> Use `{{...}}` to pass a variable name in a function. 
 
 ---
 
@@ -120,7 +121,7 @@ sum_x_in_df(df1)
 sum_x_in_df <- function(data, var = num_votes) {
 
   summed_df <- data %>%
-    summarize(Total = sum(var))
+    summarize(Total = sum({{var}}))
   
   return(summed_df)
 }
@@ -140,7 +141,7 @@ sum_x_in_df(df1, num_registrations)
 sum_x_in_df <- function(data, var = num_votes) {
 
   summed_df <- data %>%
-    summarize(Total = sum(var))
+    summarize(Total = sum({{var}}))
   
   return(summed_df)
 }
