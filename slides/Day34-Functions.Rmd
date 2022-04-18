@@ -1,0 +1,154 @@
+---
+title: "Day Thirty-Four: Functions"
+subtitle: "SDS 192: Introduction to Data Science"
+author: |
+  Lindsay Poirier<br/>
+  <span style = 'font-size: 70%;'>
+  [Statistical & Data Sciences](http://www.smith.edu/sds), Smith College<br/>
+  </span>
+date: |
+  Spring 2022<br/>
+  `r sds::img_logo(width = 64)`
+output:
+  sds::moon_reader:
+    lib_dir: libs
+    css: xaringan-custom.css
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false    
+      navigation:
+        scroll: false
+---
+
+# Why write functions?
+
+* Sometimes we find ourselves writing very similar lines of code over and over again for different data frames or variables. 
+* Example:
+
+```{r eval=FALSE}
+df1 %>%
+  summmarize(Total = sum(num_votes))
+
+df2 %>%
+  summmarize(Total = sum(num_votes))
+
+df3 %>%
+  summmarize(Total = sum(num_votes))
+```
+
+---
+
+# Functions
+
+* Statements organized to perform a specific task
+* Take arguments as *inputs*
+  * Arguments can be required or optional
+* Return a value or set of values as *outputs*
+  * Default value is output of last line of function if not specified
+
+---
+
+# User-defined Functions
+
+Basic format:
+
+```{r eval=FALSE}
+function_name <- function(arg1, arg2) {
+
+  x <- #Some code goes here referencing arg1 and arg2
+  
+  return(x)
+}
+```
+
+---
+
+# Calling Functions
+
+> This is the same way you'd call functions built-in to `R`
+
+```{r eval = FALSE}
+function_name(value_for_arg1, value_for_arg2)
+```
+
+---
+
+# User-defined Functions
+
+```{r eval = FALSE}
+sum_x_in_df <- function(data, var) {
+
+  summed_df <- data %>%
+    summarize(Total = sum(var))
+  
+  return(summed_df)
+}
+```
+
+```{r eval = FALSE}
+sum_x_in_df(df1, num_votes)
+```
+
+> Both `data` and `var` are required arguments above. 
+
+---
+
+# Making arguments optional
+
+```{r eval = FALSE}
+sum_x_in_df <- function(data, var = num_votes) {
+
+  summed_df <- data %>%
+    summarize(Total = sum(var))
+  
+  return(summed_df)
+}
+```
+
+```{r eval = FALSE}
+sum_x_in_df(df1)
+```
+
+> Default value provided for `var`, so it is now optional. 
+
+---
+
+# Overriding Defaults
+
+```{r eval = FALSE}
+sum_x_in_df <- function(data, var = num_votes) {
+
+  summed_df <- data %>%
+    summarize(Total = sum(var))
+  
+  return(summed_df)
+}
+```
+
+```{r eval = FALSE}
+sum_x_in_df(df1, num_registrations)
+```
+
+> `num_registrations` overrides the default value of `num_votes` for argument `var`
+
+---
+
+# Naming Arguments
+
+```{r eval = FALSE}
+sum_x_in_df <- function(data, var = num_votes) {
+
+  summed_df <- data %>%
+    summarize(Total = sum(var))
+  
+  return(summed_df)
+}
+```
+
+```{r eval = FALSE}
+sum_x_in_df(data = df1, var = num_registrations)
+```
+
+> Order matters if arguments not named!
+
