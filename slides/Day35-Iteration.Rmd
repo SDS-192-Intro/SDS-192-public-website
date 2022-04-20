@@ -1,0 +1,199 @@
+---
+title: "Day Thirty-Five: Iteration"
+subtitle: "SDS 192: Introduction to Data Science"
+author: |
+  Lindsay Poirier<br/>
+  <span style = 'font-size: 70%;'>
+  [Statistical & Data Sciences](http://www.smith.edu/sds), Smith College<br/>
+  </span>
+date: |
+  Spring 2022<br/>
+  `r sds::img_logo(width = 64)`
+output:
+  sds::moon_reader:
+    lib_dir: libs
+    css: xaringan-custom.css
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false    
+      navigation:
+        scroll: false
+
+---
+
+# For loops
+
+```{r}
+for (x in 1:5) {
+  print(x)
+}
+```
+
+---
+
+# For loops
+
+```{r}
+
+df <- data.frame(
+  name = c("obs1", "obs2", "obs3", "obs1"),
+  a = c(2, 3, 4, 5),
+  b = c(4, 7, 2, 1),
+  c = c(4, 9, 3, 2)
+)
+
+for (i in df$a) {
+  print(i + 1)
+}
+```
+
+---
+
+# For loops
+
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+df <- data.frame(
+  name = c("obs1", "obs2", "obs3", "obs1"),
+  a = c(2, 3, 4, 5),
+  b = c(4, 7, 2, 1),
+  c = c(4, 9, 3, 2)
+)
+
+for (i in df %>% select(a:c)) {
+  print(sum(i))
+}
+```
+
+---
+
+# Vectorized Functions
+
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+df <- data.frame(
+  name = c("obs1", "obs2", "obs3", "obs1"),
+  a = c(2, 3, 4, 5),
+  b = c(4, 7, 2, 1),
+  c = c(4, 9, 3, 2)
+)
+
+df %>% summarize(across(a:c, sum))
+```
+
+---
+
+# Vectorized Functions
+
+```{r}
+library(tidyverse)
+df <- data.frame(
+  name = c("obs1", "obs2", "obs3", "obs1"),
+  a = c(2, 3, 4, 5),
+  b = c(4, 7, 2, 1),
+  c = c(4, 9, 3, 2)
+)
+
+df %>% summarize(across(where(is.numeric), sum))
+```
+
+---
+
+# `purrr` package
+
+* Package for working with functions and vectors
+* Based on the functional programming paradigm
+* Provides a family of `map()` functions
+
+
+---
+
+# `map()`
+
+.pull-left[
+```{r}
+df <- data.frame(
+  name = c("obs1", "obs2", "obs3", "obs1"),
+  a = c(2, 3, 4, 5),
+  b = c(4, 7, 2, 1),
+  c = c(4, 9, 3, 2)
+)
+```
+]
+
+.pull-right[
+```{r}
+sum_x_in_df <- 
+  function(x) {
+    summed_vector <- sum(x)
+    return(summed_vector)
+}
+```
+
+```{r}
+map(df %>% select(a:c), 
+    sum_x_in_df)
+```
+]
+
+---
+
+.pull-left[
+```{r}
+df <- data.frame(
+  name = c("obs1", "obs2", "obs3", "obs1"),
+  a = c(2, 3, 4, 5),
+  b = c(4, 7, 2, 1),
+  c = c(4, 9, 3, 2)
+)
+```
+]
+
+.pull-right[
+```{r}
+sum_x_in_df <- 
+  function(x) {
+    summed_vector <- sum(x)
+    return(summed_vector)
+}
+```
+
+```{r}
+map_dfc(df %>% select(a:c), 
+        sum_x_in_df)
+```
+]
+
+---
+
+.pull-left[
+```{r}
+df <- data.frame(
+  name = c("obs1", "obs2", "obs3", "obs1"),
+  a = c(2, 3, 4, 5),
+  b = c(4, 7, 2, 1),
+  c = c(4, 9, 3, 2)
+)
+```
+]
+
+.pull-right[
+```{r}
+print_rows <- 
+  function(obs = "obs1")  {
+    df %>%
+      filter(name == obs)
+}
+```
+
+```{r}
+map_dfr(c("obs1", "obs2"), 
+        print_rows)
+```
+]
+
+---
+
+# Let's practice!
+

@@ -80,14 +80,14 @@ function_name(value_for_arg1, value_for_arg2)
 sum_x_in_df <- function(data) {
 
   summed_df <- data %>%
-    summarize(Total = sum(var))
+    summarize(Total = sum(num_votes))
   
   return(summed_df)
 }
 ```
 
 ```{r eval = FALSE}
-sum_x_in_df(df1, num_votes)
+sum_x_in_df(df1)
 ```
 
 > `data` is a required argument above. 

@@ -56,7 +56,7 @@ topic_id,topic_abbr,announcement
 23,apis, Quiz 4 due Wednesday (5PM)
 24,joining_apis, Class slides are [here](slides/Day26-SoSQL.html)
 25,functions, Class slides are [here](slides/Day34-Functions.html)
-26,practicing_functions,
+26,practicing_functions, Class slides are [here](slides/Day35-Iteration.html)
 27,recap2,
 28,projections,
 29,leaflet, Class slides are [here](slides/Day29-Leaflet.html)
@@ -69,7 +69,7 @@ topic_id,topic_abbr,announcement
 33,chloropleth, Class slides are [here](slides/Day33-HowToLie.html)
 34,tbd1,
 35,tbd2, Class slides are [here](slides/Day24-Privacy.html)
-36,recap3,
+36,recap3
 37,final1,
 38,final2,
 39,final3,
